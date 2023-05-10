@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		089D74432A0C033200A43651 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089D74422A0C033200A43651 /* Theme.swift */; };
+		089D74472A0C2D3000A43651 /* WorkSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 089D74462A0C2D3000A43651 /* WorkSans-Light.ttf */; };
+		089D74492A0C2D3800A43651 /* WorkSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 089D74482A0C2D3800A43651 /* WorkSans-Medium.ttf */; };
+		089D744B2A0C2D4200A43651 /* WorkSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 089D744A2A0C2D4200A43651 /* WorkSans-SemiBold.ttf */; };
+		089D744D2A0C2D4D00A43651 /* WorkSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 089D744C2A0C2D4D00A43651 /* WorkSans-Regular.ttf */; };
 		08B21F662A0BFC6A00CBAC97 /* RecipleaseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B21F652A0BFC6A00CBAC97 /* RecipleaseApp.swift */; };
 		08B21F682A0BFC6A00CBAC97 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B21F672A0BFC6A00CBAC97 /* ContentView.swift */; };
 		08B21F6A2A0BFC6E00CBAC97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08B21F692A0BFC6E00CBAC97 /* Assets.xcassets */; };
@@ -16,6 +21,7 @@
 		08B21F7C2A0BFC6F00CBAC97 /* RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B21F7B2A0BFC6F00CBAC97 /* RecipleaseTests.swift */; };
 		08B21F862A0BFC6F00CBAC97 /* RecipleaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B21F852A0BFC6F00CBAC97 /* RecipleaseUITests.swift */; };
 		08B21F882A0BFC6F00CBAC97 /* RecipleaseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B21F872A0BFC6F00CBAC97 /* RecipleaseUITestsLaunchTests.swift */; };
+		08B21F952A0BFC9400CBAC97 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B21F942A0BFC9400CBAC97 /* Style.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +42,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		089D74422A0C033200A43651 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		089D74462A0C2D3000A43651 /* WorkSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-Light.ttf"; sourceTree = "<group>"; };
+		089D74482A0C2D3800A43651 /* WorkSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-Medium.ttf"; sourceTree = "<group>"; };
+		089D744A2A0C2D4200A43651 /* WorkSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		089D744C2A0C2D4D00A43651 /* WorkSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-Regular.ttf"; sourceTree = "<group>"; };
 		08B21F622A0BFC6A00CBAC97 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08B21F652A0BFC6A00CBAC97 /* RecipleaseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseApp.swift; sourceTree = "<group>"; };
 		08B21F672A0BFC6A00CBAC97 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -48,6 +59,7 @@
 		08B21F812A0BFC6F00CBAC97 /* RecipleaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipleaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		08B21F852A0BFC6F00CBAC97 /* RecipleaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseUITests.swift; sourceTree = "<group>"; };
 		08B21F872A0BFC6F00CBAC97 /* RecipleaseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		08B21F942A0BFC9400CBAC97 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +87,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		089D74402A0BFD5100A43651 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				089D74422A0C033200A43651 /* Theme.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		089D74412A0C024700A43651 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				08B21F702A0BFC6E00CBAC97 /* Reciplease.xcdatamodeld */,
+				08B21F6E2A0BFC6E00CBAC97 /* Persistence.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		089D74442A0C2C9200A43651 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				089D74452A0C2CDF00A43651 /* Fonts */,
+				08B21F692A0BFC6E00CBAC97 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		089D74452A0C2CDF00A43651 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				089D744A2A0C2D4200A43651 /* WorkSans-SemiBold.ttf */,
+				089D74482A0C2D3800A43651 /* WorkSans-Medium.ttf */,
+				089D744C2A0C2D4D00A43651 /* WorkSans-Regular.ttf */,
+				089D74462A0C2D3000A43651 /* WorkSans-Light.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		08B21F592A0BFC6900CBAC97 = {
 			isa = PBXGroup;
 			children = (
@@ -98,11 +147,11 @@
 		08B21F642A0BFC6A00CBAC97 /* Reciplease */ = {
 			isa = PBXGroup;
 			children = (
-				08B21F652A0BFC6A00CBAC97 /* RecipleaseApp.swift */,
-				08B21F672A0BFC6A00CBAC97 /* ContentView.swift */,
-				08B21F692A0BFC6E00CBAC97 /* Assets.xcassets */,
-				08B21F6E2A0BFC6E00CBAC97 /* Persistence.swift */,
-				08B21F702A0BFC6E00CBAC97 /* Reciplease.xcdatamodeld */,
+				089D74402A0BFD5100A43651 /* Domain */,
+				08B21F972A0BFCBE00CBAC97 /* Application */,
+				08B21F982A0BFCC300CBAC97 /* Presentation */,
+				089D74412A0C024700A43651 /* Data */,
+				08B21F962A0BFCA700CBAC97 /* Extensions */,
 				08B21F6B2A0BFC6E00CBAC97 /* Preview Content */,
 			);
 			path = Reciplease;
@@ -131,6 +180,31 @@
 				08B21F872A0BFC6F00CBAC97 /* RecipleaseUITestsLaunchTests.swift */,
 			);
 			path = RecipleaseUITests;
+			sourceTree = "<group>";
+		};
+		08B21F962A0BFCA700CBAC97 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				08B21F942A0BFC9400CBAC97 /* Style.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		08B21F972A0BFCBE00CBAC97 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				089D74442A0C2C9200A43651 /* Assets */,
+				08B21F652A0BFC6A00CBAC97 /* RecipleaseApp.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		08B21F982A0BFCC300CBAC97 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				08B21F672A0BFC6A00CBAC97 /* ContentView.swift */,
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,7 +311,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				089D744B2A0C2D4200A43651 /* WorkSans-SemiBold.ttf in Resources */,
 				08B21F6D2A0BFC6E00CBAC97 /* Preview Assets.xcassets in Resources */,
+				089D74492A0C2D3800A43651 /* WorkSans-Medium.ttf in Resources */,
+				089D744D2A0C2D4D00A43651 /* WorkSans-Regular.ttf in Resources */,
+				089D74472A0C2D3000A43651 /* WorkSans-Light.ttf in Resources */,
 				08B21F6A2A0BFC6E00CBAC97 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,7 +344,9 @@
 				08B21F722A0BFC6E00CBAC97 /* Reciplease.xcdatamodeld in Sources */,
 				08B21F6F2A0BFC6E00CBAC97 /* Persistence.swift in Sources */,
 				08B21F682A0BFC6A00CBAC97 /* ContentView.swift in Sources */,
+				089D74432A0C033200A43651 /* Theme.swift in Sources */,
 				08B21F662A0BFC6A00CBAC97 /* RecipleaseApp.swift in Sources */,
+				08B21F952A0BFC9400CBAC97 /* Style.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
