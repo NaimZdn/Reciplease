@@ -21,11 +21,11 @@ extension Color {
            )
        }
     
-    static var primary: Color {
+    static var primaryColor: Color {
         theme.isDarkMode ? Color(hex: 0xE3E3E3) : Color(hex: 0x454545)
     }
     
-    static var secondary = Color(hex: 0xC5DC91)
+    static var secondaryColor = Color(hex: 0xC5DC91)
     
     static var background: Color {
         theme.isDarkMode ? Color(hex: 0x252427) : Color(hex: 0xF5F3F1)

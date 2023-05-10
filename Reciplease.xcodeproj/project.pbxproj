@@ -12,8 +12,9 @@
 		089D74492A0C2D3800A43651 /* WorkSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 089D74482A0C2D3800A43651 /* WorkSans-Medium.ttf */; };
 		089D744B2A0C2D4200A43651 /* WorkSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 089D744A2A0C2D4200A43651 /* WorkSans-SemiBold.ttf */; };
 		089D744D2A0C2D4D00A43651 /* WorkSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 089D744C2A0C2D4D00A43651 /* WorkSans-Regular.ttf */; };
+		089D74502A0C425300A43651 /* ValidateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089D744F2A0C425300A43651 /* ValidateButton.swift */; };
+		089D74522A0C450E00A43651 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089D74512A0C450E00A43651 /* LaunchScreenView.swift */; };
 		08B21F662A0BFC6A00CBAC97 /* RecipleaseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B21F652A0BFC6A00CBAC97 /* RecipleaseApp.swift */; };
-		08B21F682A0BFC6A00CBAC97 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B21F672A0BFC6A00CBAC97 /* ContentView.swift */; };
 		08B21F6A2A0BFC6E00CBAC97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08B21F692A0BFC6E00CBAC97 /* Assets.xcassets */; };
 		08B21F6D2A0BFC6E00CBAC97 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08B21F6C2A0BFC6E00CBAC97 /* Preview Assets.xcassets */; };
 		08B21F6F2A0BFC6E00CBAC97 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B21F6E2A0BFC6E00CBAC97 /* Persistence.swift */; };
@@ -47,9 +48,11 @@
 		089D74482A0C2D3800A43651 /* WorkSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-Medium.ttf"; sourceTree = "<group>"; };
 		089D744A2A0C2D4200A43651 /* WorkSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		089D744C2A0C2D4D00A43651 /* WorkSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-Regular.ttf"; sourceTree = "<group>"; };
+		089D744F2A0C425300A43651 /* ValidateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateButton.swift; sourceTree = "<group>"; };
+		089D74512A0C450E00A43651 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
+		089D74532A0C481800A43651 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08B21F622A0BFC6A00CBAC97 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08B21F652A0BFC6A00CBAC97 /* RecipleaseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseApp.swift; sourceTree = "<group>"; };
-		08B21F672A0BFC6A00CBAC97 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		08B21F692A0BFC6E00CBAC97 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		08B21F6C2A0BFC6E00CBAC97 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		08B21F6E2A0BFC6E00CBAC97 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -124,6 +127,30 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		089D74542A0C4CD900A43651 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				089D74512A0C450E00A43651 /* LaunchScreenView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		089D74552A0C4CE600A43651 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				089D74542A0C4CD900A43651 /* View */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		089D74562A0C4D0F00A43651 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				089D744F2A0C425300A43651 /* ValidateButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		08B21F592A0BFC6900CBAC97 = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +222,7 @@
 			children = (
 				089D74442A0C2C9200A43651 /* Assets */,
 				08B21F652A0BFC6A00CBAC97 /* RecipleaseApp.swift */,
+				089D74532A0C481800A43651 /* Info.plist */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -202,7 +230,8 @@
 		08B21F982A0BFCC300CBAC97 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				08B21F672A0BFC6A00CBAC97 /* ContentView.swift */,
+				089D74552A0C4CE600A43651 /* LaunchScreen */,
+				089D74562A0C4D0F00A43651 /* Components */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -341,9 +370,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				089D74502A0C425300A43651 /* ValidateButton.swift in Sources */,
 				08B21F722A0BFC6E00CBAC97 /* Reciplease.xcdatamodeld in Sources */,
+				089D74522A0C450E00A43651 /* LaunchScreenView.swift in Sources */,
 				08B21F6F2A0BFC6E00CBAC97 /* Persistence.swift in Sources */,
-				08B21F682A0BFC6A00CBAC97 /* ContentView.swift in Sources */,
 				089D74432A0C033200A43651 /* Theme.swift in Sources */,
 				08B21F662A0BFC6A00CBAC97 /* RecipleaseApp.swift in Sources */,
 				08B21F952A0BFC9400CBAC97 /* Style.swift in Sources */,
@@ -508,6 +538,7 @@
 				DEVELOPMENT_TEAM = MC9L8ULM7A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Reciplease/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -537,6 +568,7 @@
 				DEVELOPMENT_TEAM = MC9L8ULM7A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Reciplease/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
