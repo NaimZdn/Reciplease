@@ -18,7 +18,7 @@ struct OptionButton: View {
             Image(icon)
                 .foregroundColor(.primaryColor)
                 .frame(maxWidth: 37, maxHeight: 37)
-                .background(in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .background(Color.clear, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.primaryColor, lineWidth: 2 )
