@@ -9,6 +9,8 @@ import SwiftUI
 
 struct IngredientLabel: View {
     @State private var isSelected = false
+    var ingredientIcon: String
+    var ingredientName: String
     
     var body: some View {
         VStack {
@@ -17,14 +19,14 @@ struct IngredientLabel: View {
                 isSelected.toggle()
             } label: {
                 VStack(spacing: 10) {
-                    Text("🥩")
+                    Text(ingredientIcon)
                         .font(.defaultTitle)
                     
-                    Text("Beef")
+                    Text(ingredientName)
                         .font(.defaultBody)
                         .foregroundColor(.black)
                 }
-                .frame(maxWidth: 170, maxHeight: 105)
+                .frame(maxWidth: 170, minHeight: 105)
             
                 .background(isSelected ? Color.selectorBackground : Color.labelBackground, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                 .overlay(
@@ -38,7 +40,8 @@ struct IngredientLabel: View {
 }
 
 struct IngredientLabel_Previews: PreviewProvider {
+    
     static var previews: some View {
-        IngredientLabel()
+        IngredientLabel(ingredientIcon: Ingredient.fish.rawValue, ingredientName: Ingredient.fish.name)
     }
 }
