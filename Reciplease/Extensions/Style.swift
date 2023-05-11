@@ -111,7 +111,7 @@ extension Font {
     }
     
     static var defaultBody: Font {
-        fontRegular(15)
+        fontRegular(17)
     }
     
     static var defaultButtonCaption: Font {

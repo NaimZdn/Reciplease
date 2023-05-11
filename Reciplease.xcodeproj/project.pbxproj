@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08936FAB2A0CFFFE0057CE96 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08936FAA2A0CFFFE0057CE96 /* CartView.swift */; };
+		08936FAF2A0D00AE0057CE96 /* IngredientLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08936FAE2A0D00AE0057CE96 /* IngredientLabel.swift */; };
 		089D74432A0C033200A43651 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089D74422A0C033200A43651 /* Theme.swift */; };
 		089D74472A0C2D3000A43651 /* WorkSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 089D74462A0C2D3000A43651 /* WorkSans-Light.ttf */; };
 		089D74492A0C2D3800A43651 /* WorkSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 089D74482A0C2D3800A43651 /* WorkSans-Medium.ttf */; };
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		08936FAA2A0CFFFE0057CE96 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
+		08936FAE2A0D00AE0057CE96 /* IngredientLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientLabel.swift; sourceTree = "<group>"; };
 		089D74422A0C033200A43651 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		089D74462A0C2D3000A43651 /* WorkSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-Light.ttf"; sourceTree = "<group>"; };
 		089D74482A0C2D3800A43651 /* WorkSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-Medium.ttf"; sourceTree = "<group>"; };
@@ -90,6 +94,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08936FA92A0CFFD60057CE96 /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				08936FAC2A0D00020057CE96 /* View */,
+				08936FAD2A0D00060057CE96 /* Component */,
+			);
+			path = Cart;
+			sourceTree = "<group>";
+		};
+		08936FAC2A0D00020057CE96 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				08936FAA2A0CFFFE0057CE96 /* CartView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		08936FAD2A0D00060057CE96 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				08936FAE2A0D00AE0057CE96 /* IngredientLabel.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		089D74402A0BFD5100A43651 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +259,7 @@
 		08B21F982A0BFCC300CBAC97 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				08936FA92A0CFFD60057CE96 /* Cart */,
 				089D74552A0C4CE600A43651 /* LaunchScreen */,
 				089D74562A0C4D0F00A43651 /* Components */,
 			);
@@ -373,9 +403,11 @@
 				089D74502A0C425300A43651 /* ValidateButton.swift in Sources */,
 				08B21F722A0BFC6E00CBAC97 /* Reciplease.xcdatamodeld in Sources */,
 				089D74522A0C450E00A43651 /* LaunchScreenView.swift in Sources */,
+				08936FAF2A0D00AE0057CE96 /* IngredientLabel.swift in Sources */,
 				08B21F6F2A0BFC6E00CBAC97 /* Persistence.swift in Sources */,
 				089D74432A0C033200A43651 /* Theme.swift in Sources */,
 				08B21F662A0BFC6A00CBAC97 /* RecipleaseApp.swift in Sources */,
+				08936FAB2A0CFFFE0057CE96 /* CartView.swift in Sources */,
 				08B21F952A0BFC9400CBAC97 /* Style.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
