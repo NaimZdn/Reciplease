@@ -9,38 +9,67 @@ import SwiftUI
 
 struct LaunchScreenView: View {
     @State private var caption = "Let's start"
+    @State private var isLogoVisible = false
+    @State private var isMainVisible = false
+    @State private var isButtonVisible = false
     
     var body: some View {
         
         VStack {
-            Image("Logo light")
-                .resizable()
-                .frame(width: 167, height: 30)
-                .padding(.top, 30)
+            HStack {
+                Image("Logo light")
+                    .resizable()
+                    .frame(width: 167, height: 30)
+                    .padding(.top, isLogoVisible ? 20 : -10)
+                    .opacity(isLogoVisible ? 1 : 0)
+                    .onAppear {
+                        withAnimation(.easeInOut(duration: 0.6)){
+                            isLogoVisible = true
+                        }
+                    }
+            }
             
             Spacer()
             
-            Image("Fridge")
-                .resizable()
-                .frame(maxWidth: 265, maxHeight: 265)
-                .cornerRadius(300)
-                .padding(.bottom, 50)
-            
-            Text("All recipes based\n on your ingredients")
-                .font(.defaultTitle)
-                .foregroundColor(.primaryColor)
-                .multilineTextAlignment(.center)
-                .padding(.bottom, 10)
-            
-            Text("Finding new ideas has never been easier.")
-                .font(.defaultBody)
-                .foregroundColor(Color.primaryColor)
-            
+            VStack {
+                Image("Fridge")
+                    .resizable()
+                    .frame(maxWidth: 265, maxHeight: 265)
+                    .cornerRadius(300)
+                    .padding(.bottom, 30)
+                
+                Text("All recipes based\n on your ingredients")
+                    .font(.defaultTitle)
+                    .foregroundColor(.primaryColor)
+                    .multilineTextAlignment(.center)
+                    .padding(.bottom, 8)
+                
+                Text("Finding new ideas has never been easier.")
+                    .font(.defaultBody)
+                    .foregroundColor(Color.primaryColor)
+            }
+            .opacity(isMainVisible ? 1 : 0)
+            .padding(.bottom, isMainVisible ? 0 : -70)
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    withAnimation(.easeInOut(duration: 0.6)){
+                        isMainVisible = true
+                    }
+                }
+            }
+          
             Spacer()
             
             ValidateButton(buttonCaption: $caption)
-                .padding(.bottom, 20)
-            
+                .opacity(isButtonVisible ? 1 : 0)
+                .padding(.bottom, isButtonVisible ? 20 : -70)
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        withAnimation(.easeInOut(duration: 0.7)){
+                            isButtonVisible = true
+                        }
+                    }
+                }
         }
         .background(Color.background)
     }
