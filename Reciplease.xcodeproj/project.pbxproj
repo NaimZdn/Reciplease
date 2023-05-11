@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		08936FAB2A0CFFFE0057CE96 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08936FAA2A0CFFFE0057CE96 /* CartView.swift */; };
 		08936FAF2A0D00AE0057CE96 /* IngredientLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08936FAE2A0D00AE0057CE96 /* IngredientLabel.swift */; };
+		089637202A0D6EAB00340CFE /* OptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0896371F2A0D6EAB00340CFE /* OptionButton.swift */; };
 		089D74432A0C033200A43651 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089D74422A0C033200A43651 /* Theme.swift */; };
 		089D74472A0C2D3000A43651 /* WorkSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 089D74462A0C2D3000A43651 /* WorkSans-Light.ttf */; };
 		089D74492A0C2D3800A43651 /* WorkSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 089D74482A0C2D3800A43651 /* WorkSans-Medium.ttf */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		08936FAA2A0CFFFE0057CE96 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		08936FAE2A0D00AE0057CE96 /* IngredientLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientLabel.swift; sourceTree = "<group>"; };
+		0896371F2A0D6EAB00340CFE /* OptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionButton.swift; sourceTree = "<group>"; };
 		089D74422A0C033200A43651 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		089D74462A0C2D3000A43651 /* WorkSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-Light.ttf"; sourceTree = "<group>"; };
 		089D74482A0C2D3800A43651 /* WorkSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-Medium.ttf"; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				089D744F2A0C425300A43651 /* ValidateButton.swift */,
+				0896371F2A0D6EAB00340CFE /* OptionButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				089637202A0D6EAB00340CFE /* OptionButton.swift in Sources */,
 				089D74502A0C425300A43651 /* ValidateButton.swift in Sources */,
 				08B21F722A0BFC6E00CBAC97 /* Reciplease.xcdatamodeld in Sources */,
 				089D74522A0C450E00A43651 /* LaunchScreenView.swift in Sources */,
