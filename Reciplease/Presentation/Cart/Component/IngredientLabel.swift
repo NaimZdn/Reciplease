@@ -41,7 +41,9 @@ struct IngredientLabel: View {
 
 struct IngredientLabel_Previews: PreviewProvider {
     
+    @ObservedObject static private var viewModel = CartViewModel()
+    
     static var previews: some View {
-        IngredientLabel(ingredientIcon: Ingredient.fish.rawValue, ingredientName: Ingredient.fish.name)
+        IngredientLabel(ingredientIcon: viewModel.ingredients[1].icon, ingredientName: viewModel.ingredients[1].name)
     }
 }

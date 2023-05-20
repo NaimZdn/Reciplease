@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CartView: View {
     @State private var searchText = ""
-    let ingredients = Ingredient.allCases
+    @ObservedObject var viewModel = CartViewModel()
     
     var body: some View {
         
@@ -37,25 +37,20 @@ struct CartView: View {
                     
                 }
             }
-            .padding(.bottom, 10)
+            .padding(.vertical, 10)
             .background(Color.background)
             
             ScrollView {
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                    ForEach(ingredients, id: \.self) { ingredient in
-                        IngredientLabel(ingredientIcon: ingredient.rawValue, ingredientName: ingredient.name)
+                    ForEach(viewModel.ingredients) { ingredient in
+                        IngredientLabel(ingredientIcon: ingredient.icon, ingredientName: ingredient.name)
                     }
                 }
-                .padding(.top, 20)
-                
+                .padding(.vertical, 20)
             }
-          
-            
         }
-        .padding(20)
+        .padding(.horizontal, 20)
         .background(Color.background)
-        
-     
     }
 }
 
