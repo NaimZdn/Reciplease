@@ -51,6 +51,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0825B9562A193F1C00FF271E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0825B9572A193F1C00FF271E /* presentation_reciplease.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = presentation_reciplease.jpg; sourceTree = "<group>"; };
+		0825B9582A193F1C00FF271E /* presentation_reciplease.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = presentation_reciplease.pdf; sourceTree = "<group>"; };
+		0825B9592A193F1C00FF271E /* banner_reciplease.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = banner_reciplease.svg; sourceTree = "<group>"; };
 		08936FAA2A0CFFFE0057CE96 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		08936FAE2A0D00AE0057CE96 /* IngredientLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientLabel.swift; sourceTree = "<group>"; };
 		0896371F2A0D6EAB00340CFE /* OptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionButton.swift; sourceTree = "<group>"; };
@@ -106,6 +110,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0825B95A2A193F4F00FF271E /* README Assets */ = {
+			isa = PBXGroup;
+			children = (
+				0825B9592A193F1C00FF271E /* banner_reciplease.svg */,
+				0825B9572A193F1C00FF271E /* presentation_reciplease.jpg */,
+				0825B9582A193F1C00FF271E /* presentation_reciplease.pdf */,
+			);
+			path = "README Assets";
+			sourceTree = "<group>";
+		};
 		08936FA92A0CFFD60057CE96 /* Cart */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,9 +221,11 @@
 		08B21F592A0BFC6900CBAC97 = {
 			isa = PBXGroup;
 			children = (
+				0825B9562A193F1C00FF271E /* README.md */,
 				08B21F642A0BFC6A00CBAC97 /* Reciplease */,
 				08B21F7A2A0BFC6F00CBAC97 /* RecipleaseTests */,
 				08B21F842A0BFC6F00CBAC97 /* RecipleaseUITests */,
+				0825B95A2A193F4F00FF271E /* README Assets */,
 				08B21F632A0BFC6A00CBAC97 /* Products */,
 			);
 			sourceTree = "<group>";
