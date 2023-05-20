@@ -53,7 +53,6 @@
 /* Begin PBXFileReference section */
 		0825B9562A193F1C00FF271E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0825B9572A193F1C00FF271E /* presentation_reciplease.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = presentation_reciplease.jpg; sourceTree = "<group>"; };
-		0825B9582A193F1C00FF271E /* presentation_reciplease.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = presentation_reciplease.pdf; sourceTree = "<group>"; };
 		0825B9592A193F1C00FF271E /* banner_reciplease.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = banner_reciplease.svg; sourceTree = "<group>"; };
 		08936FAA2A0CFFFE0057CE96 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		08936FAE2A0D00AE0057CE96 /* IngredientLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientLabel.swift; sourceTree = "<group>"; };
@@ -115,7 +114,6 @@
 			children = (
 				0825B9592A193F1C00FF271E /* banner_reciplease.svg */,
 				0825B9572A193F1C00FF271E /* presentation_reciplease.jpg */,
-				0825B9582A193F1C00FF271E /* presentation_reciplease.pdf */,
 			);
 			path = "README Assets";
 			sourceTree = "<group>";

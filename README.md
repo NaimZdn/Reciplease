@@ -1,4 +1,4 @@
-![logo](https://github.com/NaimZdn/Reciplease/blob/main/banner_reciplease.svg)
+![logo](https://github.com/NaimZdn/Reciplease/blob/main/README%20Assets/banner_reciplease.svg)
 
 <p align="center">
   <img src="https://img.shields.io/badge/-Swift-f05138?style=flat&labelColor=f05138&logo=swift&logoColor=white"/>
@@ -14,4 +14,4 @@
 
 <h2> App Design </h2>
 
-<img src="https://github.com/NaimZdn/Reciplease/blob/main/presentation_reciplease.jpg"/>
+<img src="https://github.com/NaimZdn/Reciplease/blob/main/README%20Assets/presentation_reciplease.jpg"/>
