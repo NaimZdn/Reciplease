@@ -19,7 +19,7 @@ struct CustomTabBar: View {
                     Image("\(selectedTab == tab ? selectedTab.rawValue : tab.rawValue)")
                         .resizable()
                         .frame(width: tab.rawValue == "favorite" ? 19 : 25, height: 25)
-                        .foregroundColor(selectedTab == tab ? .primaryColor : .tabBarIcon)
+                        .foregroundColor(selectedTab == tab ? .tabBarIconSelected : .tabBarIcon)
                         .onTapGesture {
                             selectedTab = tab
                         }
