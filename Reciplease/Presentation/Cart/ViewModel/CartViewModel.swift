@@ -77,7 +77,6 @@ class CartViewModel: ObservableObject {
         Ingredient(name: "Honey", icon: "🍯"),
         Ingredient(name: "Ice", icon: "🧊"),
         Ingredient(name: "Salt", icon: "🧂"),
-        
     ]
 
     func addIngredient(name: String, icon: String) {

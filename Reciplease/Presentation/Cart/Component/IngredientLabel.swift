@@ -24,7 +24,7 @@ struct IngredientLabel: View {
                     
                     Text(ingredientName)
                         .font(.defaultBody)
-                        .foregroundColor(.black)
+                        .foregroundColor(.cardTitleIcon)
                 }
                 .frame(maxWidth: 170, minHeight: 105)
             

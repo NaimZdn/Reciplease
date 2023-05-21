@@ -13,7 +13,7 @@ struct RecipleaseApp: App {
 
     var body: some Scene {
         WindowGroup {
-            LaunchScreenView()
+           TabBarView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
