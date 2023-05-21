@@ -9,72 +9,65 @@ import Foundation
 import SwiftUI
 
 extension Color {
-    static let theme = Theme()
-    
-    init(hex: UInt, alpha: Double = 1) {
-           self.init(
-               .sRGB    ,
-               red: Double((hex >> 16) & 0xff) / 255,
-               green: Double((hex >> 08) & 0xff) / 255,
-               blue: Double((hex >> 00) & 0xff) / 255,
-               opacity: alpha
-           )
-       }
     
     static var primaryColor: Color {
-        theme.isDarkMode ? Color(hex: 0xE3E3E3) : Color(hex: 0x454545)
+        Color("primaryColor")
     }
     
-    static var secondaryColor = Color(hex: 0xC5DC91)
+    static var secondaryColor = Color("secondaryColor")
     
     static var background: Color {
-        theme.isDarkMode ? Color(hex: 0x252427) : Color(hex: 0xF5F3F1)
+        Color("background")
     }
     
     static var tabBarIcon: Color {
-        theme.isDarkMode ? Color(hex: 0xFFFFFF, alpha: 0.2) : Color(hex: 0x000000, alpha: 0.2)
+        Color("tabBarIcon")
+    }
+    
+    static var tabBarIconSelected: Color {
+        Color("tabBarIconSelected")
     }
     
     static var placeholder: Color {
-        theme.isDarkMode ? Color(hex: 0xFFFFFF, alpha: 0.3) : Color(hex: 0x000000, alpha: 0.3)
+        Color("placeholder")
     }
     
     static var cardTitleIcon: Color {
-        theme.isDarkMode ? Color(hex: 0x000000) : Color(hex: 0xFFFFFF)
+        Color("cardTitleIcon")
     }
     
     static var labelBackground : Color {
-        theme.isDarkMode ? Color(hex: 0xFFFFFF, alpha: 0.05) : Color(hex: 0x000000, alpha: 0.05)
+        Color("labelBackground")
     }
     
     static var labelBody : Color {
-        theme.isDarkMode ? Color(hex: 0xFFFFFF, alpha: 0.7) : Color(hex: 0x000000, alpha: 0.7)
+        Color("labelBody")
     }
     
-    static var selectorStroke = Color(hex: 0xADC577)
+    static var selectorStroke = Color("selectorStroke")
     
-    static var selectorBackground = Color(hex: 0xC5DC91, alpha: 0.2)
-
+    static var selectorBackground = Color("selectorBackground")
+    
     static var cardBackground : Color {
-        theme.isDarkMode ? Color(hex: 0xFFFFFF) : Color(hex: 0x000000)
+        Color("cardBackground")
     }
     
-    static var cardOptionText = Color(hex: 0x454545, alpha: 0.7)
+    static var cardOptionText = Color("cardOptionText")
     
     static var nutrimentProtein : Color {
-        theme.isDarkMode ? Color(hex: 0x68DE57, alpha: 0.3) : Color(hex: 0x77C969, alpha: 0.2)
+        Color("nutrimentProtein")
     }
     
     static var nutrimentFat : Color {
-        theme.isDarkMode ? Color(hex: 0xED8F38, alpha: 0.3) : Color(hex: 0xD48A46, alpha: 0.2)
+        Color("nutrimentFat")
     }
     
     static var nutrimentCarb : Color {
-        theme.isDarkMode ? Color(hex: 0xEE5252, alpha: 0.3) : Color(hex: 0xD44646, alpha: 0.2)
+        Color("nutrimentCarb")
     }
     
     static var ingredientChecked : Color {
-        theme.isDarkMode ? Color(hex: 0xFFFFFF, alpha: 0.5) : Color(hex: 0x000000, alpha: 0.5)
+        Color("ingredientChecked")
     }
 }
 
