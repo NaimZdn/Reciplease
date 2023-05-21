@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct SettingsLabel: View {
-    @Binding var text: String
-    @Binding var icon: String
+    var text: String
+    var icon: String
     @Binding var darkModeEnabled: Bool
+    var isLink: Bool
     
     var body: some View {
         HStack(spacing: 20) {
@@ -23,25 +24,28 @@ struct SettingsLabel: View {
                 
             Spacer()
             
-            Toggle(isOn: $darkModeEnabled) {
+            if isLink {
+                Image("link")
+                    .foregroundColor(.tabBarIcon)
+            } else {
+                Toggle(isOn: $darkModeEnabled) {
+                }
+                .onChange(of: darkModeEnabled, perform: { _ in
+                    ThemeManager.shared.handleTheme(darkMode: darkModeEnabled)
+                })
+                .toggleStyle(SwitchToggleStyle(tint: .tabBarIconSelected))
+                .frame(width: 57)
             }
-            .onChange(of: darkModeEnabled, perform: { _ in
-                ThemeManager.shared.handleTheme(darkMode: darkModeEnabled)
-            })
-            .toggleStyle(SwitchToggleStyle(tint: .tabBarIconSelected))
-            .frame(width: 57)
- 
         }
         .padding(.horizontal, 20)
         .frame(maxWidth: .infinity, minHeight: 70)
         .background(Color.cardBackground, in: RoundedRectangle(cornerRadius: 15, style: .continuous))
-        .padding(20)
-        .background(Color.background)
+
     }
 }
 
 struct SettingsLabel_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsLabel(text: .constant("Enable notifications"), icon: .constant("bell"), darkModeEnabled: .constant(false))
+        SettingsLabel(text: "Enable notifications", icon: "bell", darkModeEnabled: .constant(false), isLink: false)
     }
 }
