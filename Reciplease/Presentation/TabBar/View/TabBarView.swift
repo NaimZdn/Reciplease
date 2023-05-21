@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TabBarView: View {
     @State private var selectedTab: TabBar = .cart
+    @AppStorage("darkModeEnabled") private var darkModeEnabled = false
     
     init() {
         UITabBar.appearance().isHidden = true
@@ -20,6 +21,8 @@ struct TabBarView: View {
                 TabView(selection: $selectedTab) {
                     CartView()
                         .tag(TabBar.cart)
+                    SettingsView(darkModeIsEnabled: $darkModeEnabled)
+                        .tag(TabBar.seetings)
                     
                 }
                 CustomTabBar(selectedTab: $selectedTab)
@@ -27,9 +30,12 @@ struct TabBarView: View {
                     
             }
         }
+        .onAppear {
+            ThemeManager.shared.handleTheme(darkMode: darkModeEnabled)
+        }
         .background(Color.background)
         .ignoresSafeArea(.keyboard)
-    }
+    }    
 }
 
 struct TabBarView_Previews: PreviewProvider {
