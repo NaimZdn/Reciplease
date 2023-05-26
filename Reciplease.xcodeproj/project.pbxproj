@@ -13,6 +13,7 @@
 		08936FAF2A0D00AE0057CE96 /* IngredientLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08936FAE2A0D00AE0057CE96 /* IngredientLabel.swift */; };
 		089637202A0D6EAB00340CFE /* OptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0896371F2A0D6EAB00340CFE /* OptionButton.swift */; };
 		089637222A0D942100340CFE /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089637212A0D942100340CFE /* Ingredient.swift */; };
+		08982FB42A1A8E5900FE921B /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08982FB32A1A8E5900FE921B /* Label.swift */; };
 		089D74432A0C033200A43651 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089D74422A0C033200A43651 /* ThemeManager.swift */; };
 		089D74472A0C2D3000A43651 /* WorkSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 089D74462A0C2D3000A43651 /* WorkSans-Light.ttf */; };
 		089D74492A0C2D3800A43651 /* WorkSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 089D74482A0C2D3800A43651 /* WorkSans-Medium.ttf */; };
@@ -62,6 +63,7 @@
 		08936FAE2A0D00AE0057CE96 /* IngredientLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientLabel.swift; sourceTree = "<group>"; };
 		0896371F2A0D6EAB00340CFE /* OptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionButton.swift; sourceTree = "<group>"; };
 		089637212A0D942100340CFE /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		08982FB32A1A8E5900FE921B /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		089D74422A0C033200A43651 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		089D74462A0C2D3000A43651 /* WorkSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-Light.ttf"; sourceTree = "<group>"; };
 		089D74482A0C2D3800A43651 /* WorkSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-Medium.ttf"; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				089D74422A0C033200A43651 /* ThemeManager.swift */,
 				089637212A0D942100340CFE /* Ingredient.swift */,
 				08D3333E2A0E4B8100D46C71 /* TabBar.swift */,
+				08982FB32A1A8E5900FE921B /* Label.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -513,6 +516,7 @@
 				0825B9652A19419F00FF271E /* SettingsLabel.swift in Sources */,
 				08B21F6F2A0BFC6E00CBAC97 /* Persistence.swift in Sources */,
 				089D74432A0C033200A43651 /* ThemeManager.swift in Sources */,
+				08982FB42A1A8E5900FE921B /* Label.swift in Sources */,
 				0825B9632A19412C00FF271E /* SettingsView.swift in Sources */,
 				08B21F662A0BFC6A00CBAC97 /* RecipleaseApp.swift in Sources */,
 				08936FAB2A0CFFFE0057CE96 /* CartView.swift in Sources */,
