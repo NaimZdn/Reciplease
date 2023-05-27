@@ -22,6 +22,8 @@
 		089D74502A0C425300A43651 /* ValidateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089D744F2A0C425300A43651 /* ValidateButton.swift */; };
 		089D74522A0C450E00A43651 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089D74512A0C450E00A43651 /* LaunchScreenView.swift */; };
 		08B1D9292A22227100234781 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B1D9282A22227000234781 /* FavoriteView.swift */; };
+		08B1D92C2A22367D00234781 /* FavoriteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B1D92B2A22367D00234781 /* FavoriteCard.swift */; };
+		08B1D92E2A22417D00234781 /* CardOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B1D92D2A22417D00234781 /* CardOption.swift */; };
 		08B21F662A0BFC6A00CBAC97 /* RecipleaseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B21F652A0BFC6A00CBAC97 /* RecipleaseApp.swift */; };
 		08B21F6A2A0BFC6E00CBAC97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08B21F692A0BFC6E00CBAC97 /* Assets.xcassets */; };
 		08B21F6D2A0BFC6E00CBAC97 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08B21F6C2A0BFC6E00CBAC97 /* Preview Assets.xcassets */; };
@@ -74,6 +76,8 @@
 		089D74512A0C450E00A43651 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		089D74532A0C481800A43651 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08B1D9282A22227000234781 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
+		08B1D92B2A22367D00234781 /* FavoriteCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCard.swift; sourceTree = "<group>"; };
+		08B1D92D2A22417D00234781 /* CardOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardOption.swift; sourceTree = "<group>"; };
 		08B21F622A0BFC6A00CBAC97 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08B21F652A0BFC6A00CBAC97 /* RecipleaseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseApp.swift; sourceTree = "<group>"; };
 		08B21F692A0BFC6E00CBAC97 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -246,6 +250,7 @@
 			children = (
 				089D744F2A0C425300A43651 /* ValidateButton.swift */,
 				0896371F2A0D6EAB00340CFE /* OptionButton.swift */,
+				08B1D92D2A22417D00234781 /* CardOption.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -270,6 +275,7 @@
 		08B1D9272A2220D100234781 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				08B1D92B2A22367D00234781 /* FavoriteCard.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -541,6 +547,7 @@
 				089D74522A0C450E00A43651 /* LaunchScreenView.swift in Sources */,
 				08936FAF2A0D00AE0057CE96 /* IngredientLabel.swift in Sources */,
 				0825B9652A19419F00FF271E /* SettingsLabel.swift in Sources */,
+				08B1D92E2A22417D00234781 /* CardOption.swift in Sources */,
 				08B21F6F2A0BFC6E00CBAC97 /* Persistence.swift in Sources */,
 				089D74432A0C033200A43651 /* ThemeManager.swift in Sources */,
 				08982FB42A1A8E5900FE921B /* Label.swift in Sources */,
@@ -551,6 +558,7 @@
 				089637222A0D942100340CFE /* Ingredient.swift in Sources */,
 				08B1D9292A22227100234781 /* FavoriteView.swift in Sources */,
 				08D3333F2A0E4B8100D46C71 /* TabBar.swift in Sources */,
+				08B1D92C2A22367D00234781 /* FavoriteCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
