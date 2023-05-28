@@ -361,14 +361,38 @@
 		08B21F982A0BFCC300CBAC97 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				08B1D9252A2220B500234781 /* Favorite */,
+				08D009B72A23EC6C00166035 /* Recipe */,
 				089D74552A0C4CE600A43651 /* LaunchScreen */,
 				08D3333A2A0E47D600D46C71 /* TabBar */,
 				08936FA92A0CFFD60057CE96 /* Cart */,
+				08B1D9252A2220B500234781 /* Favorite */,
 				0825B95C2A1940CB00FF271E /* Seetings */,
 				089D74562A0C4D0F00A43651 /* Components */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		08D009B72A23EC6C00166035 /* Recipe */ = {
+			isa = PBXGroup;
+			children = (
+				08D009B82A23EC7200166035 /* View */,
+				08D009B92A23EC7700166035 /* Component */,
+			);
+			path = Recipe;
+			sourceTree = "<group>";
+		};
+		08D009B82A23EC7200166035 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		08D009B92A23EC7700166035 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 		08D333372A0E445600D46C71 /* ViewModel */ = {

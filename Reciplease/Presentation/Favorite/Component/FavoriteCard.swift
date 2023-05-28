@@ -35,7 +35,8 @@ struct FavoriteCard: View {
             CardOption(optionIcon: "kcal", optionText: .constant("412 kcal"))
             
         }
-        .padding(10)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 15)
         .frame(maxWidth: 169, maxHeight: 230)
         .background(Color.cardBackground, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
     }
