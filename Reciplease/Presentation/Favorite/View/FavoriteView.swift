@@ -38,10 +38,10 @@ struct FavoriteView: View {
             .background(Color.background)
             
             ScrollView {
-                
-                
+                HStack {
+                    FavoriteCard()
+                }
             }
-       
         }
         .padding(.horizontal, 20)
         .background(Color.background)
