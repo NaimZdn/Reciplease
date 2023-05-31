@@ -27,7 +27,7 @@ struct TabBarView: View {
                 }
                 CustomTabBar(selectedTab: $selectedTab)
                     .padding(.bottom, 25)
-                    
+                
             }
         }
         .onAppear {

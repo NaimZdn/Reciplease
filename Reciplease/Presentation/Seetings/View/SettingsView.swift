@@ -30,9 +30,9 @@ struct SettingsView: View {
                 SettingsLabel(text: label[0].rawValue, icon: label[0].icon, darkModeEnabled: $darkModeIsEnabled, isLink: false)
                 
                 SettingsLabel(text: label[1].rawValue, icon: label[1].icon, darkModeEnabled: $darkModeIsEnabled, isLink: false)
-                 
-               
-                .padding(.bottom, 30)
+                
+                
+                    .padding(.bottom, 30)
                 
                 Text("Legal mentions")
                     .font(.defaultBody)
@@ -56,7 +56,7 @@ struct SettingsView: View {
         .padding(20)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(Color.background)
-
+        
     }
 }
 

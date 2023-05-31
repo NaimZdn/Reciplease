@@ -21,7 +21,7 @@ struct SettingsLabel: View {
             Text(text)
                 .foregroundColor(.primaryColor)
                 .font(.defaultLabelCaption)
-                
+            
             Spacer()
             
             if isLink {
@@ -40,7 +40,7 @@ struct SettingsLabel: View {
         .padding(.horizontal, 20)
         .frame(maxWidth: .infinity, minHeight: 70)
         .background(Color.cardBackground, in: RoundedRectangle(cornerRadius: 15, style: .continuous))
-
+        
     }
 }
 

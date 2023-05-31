@@ -57,7 +57,7 @@ struct LaunchScreenView: View {
                     }
                 }
             }
-          
+            
             Spacer()
             
             ValidateButton(buttonCaption: $caption)
