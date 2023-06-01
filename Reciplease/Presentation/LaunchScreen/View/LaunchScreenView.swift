@@ -13,6 +13,8 @@ struct LaunchScreenView: View {
     @State private var isMainVisible = false
     @State private var isButtonVisible = false
     
+    @State private var showTabBarView = false
+    
     var body: some View {
         
         VStack {
@@ -60,18 +62,32 @@ struct LaunchScreenView: View {
             
             Spacer()
             
-            ValidateButton(buttonCaption: $caption)
-                .opacity(isButtonVisible ? 1 : 0)
-                .padding(.bottom, isButtonVisible ? 20 : -70)
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                        withAnimation(.easeInOut(duration: 0.7)){
-                            isButtonVisible = true
-                        }
+            ValidateButton(buttonCaption: $caption, action: {
+                withAnimation(.easeInOut(duration: 0.6)) {
+                    isLogoVisible = false
+                    isMainVisible = false
+                    isButtonVisible = false
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                    showTabBarView = true
+                }
+            })
+            .opacity(isButtonVisible ? 1 : 0)
+            .padding(.bottom, isButtonVisible ? 20 : -70)
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    withAnimation(.easeInOut(duration: 0.7)){
+                        isButtonVisible = true
                     }
                 }
+            }
         }
         .background(Color.background)
+        .fullScreenCover(isPresented: $showTabBarView) {
+            TabBarView()
+                
+        }
     }
 }
 
