@@ -44,6 +44,8 @@ extension Color {
         Color("labelBody")
     }
     
+    static var cardFavoriteLabel = Color("cardFavoriteLabel")
+    
     static var selectorStroke = Color("selectorStroke")
     
     static var selectorBackground = Color("selectorBackground")
