@@ -11,13 +11,19 @@ struct FavoriteCard: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Image("ramen")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 140, height: 90)
-                .cornerRadius(5)
-                .clipped()
-                .padding(.bottom, 10)
+            ZStack(alignment: .topTrailing){
+                Image("ramen")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 140, height: 90)
+                    .cornerRadius(5)
+                    .clipped()
+                    .padding(.bottom, 10)
+                
+                FavoriteCardButton()
+                    .padding(5)
+                
+            }
             
             Text("Chicken Ramen")
                 .font(.cardValue)
@@ -33,6 +39,7 @@ struct FavoriteCard: View {
                 .padding(.bottom, 5)
             
             CardOption(optionIcon: "kcal", optionText: .constant("412 kcal"))
+            
             
         }
         .padding(.horizontal, 10)
