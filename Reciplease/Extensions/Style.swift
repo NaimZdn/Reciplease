@@ -109,6 +109,10 @@ extension Font {
         fontRegular(17)
     }
     
+    static var defaultTitle2: Font {
+        fontMedium(20)
+    }
+    
     static var defaultButtonCaption: Font {
         fontSemiBold(20)
     }
