@@ -32,7 +32,9 @@ struct FavoriteView: View {
                         )
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    OptionButton(icon: "filter")
+                    OptionButton(icon: "filter") {
+                        
+                    }
                     
                 }
             }

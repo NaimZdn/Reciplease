@@ -9,11 +9,12 @@ import SwiftUI
 
 struct OptionButton: View {
     var icon: String
+    var action: () -> Void
     
     var body: some View {
         
         Button {
-            
+            action()
         } label: {
             Image(icon)
                 .foregroundColor(.primaryColor)
@@ -30,6 +31,6 @@ struct OptionButton: View {
 
 struct OptionButton_Previews: PreviewProvider {
     static var previews: some View {
-        OptionButton(icon: "filter")
+        OptionButton(icon: "filter", action: {})
     }
 }
