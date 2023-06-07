@@ -14,7 +14,6 @@ struct FavoriteButton: View {
         isFavorite ? "favorite" : "favorite-outline"
     }
     
-    
     var body: some View {
         Button {
             withAnimation(.easeInOut(duration: 0.1)) {
