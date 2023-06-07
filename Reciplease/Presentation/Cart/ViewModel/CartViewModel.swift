@@ -9,8 +9,7 @@ import Foundation
 
 class CartViewModel: ObservableObject {
     @Published var ingredients: [Ingredient] = [
-        Ingredient(name: "Green Apple", icon: "🍏"),
-        Ingredient(name: "Red Apple", icon: "🍎"),
+        Ingredient(name: "Apple", icon: "🍏"),
         Ingredient(name: "Banana", icon: "🍌"),
         Ingredient(name: "Pear", icon: "🍐"),
         Ingredient(name: "Orange", icon: "🍊"),
@@ -83,4 +82,29 @@ class CartViewModel: ObservableObject {
         let newIngredient = Ingredient(name: name, icon: icon)
         ingredients.append(newIngredient)
     }
+    
+    func searchIngredients(text input: String) -> [Ingredient] {
+        var ingredientsList: [Ingredient] = []
+        
+        for ingredient in ingredients {
+            if ingredient.name.lowercased().contains(input.lowercased()) {
+                ingredientsList.append(ingredient)
+                
+            }
+        }
+        return ingredientsList
+    }
+    
+    func containsOnlySpaces(_ input: String) -> Bool {
+        let trimmedInput = input.trimmingCharacters(in: .whitespaces)
+        return trimmedInput.isEmpty
+    }
+    
+    func removeLeadingSpaces(_ input: String) -> String {
+        var components = input.components(separatedBy: .whitespaces)
+        components.removeAll { $0.isEmpty }
+        return components.joined(separator: " ")
+    }
 }
+
+
