@@ -18,16 +18,14 @@ struct ValidateButton: View {
             Button(action: {
                 action()
             }) {
-                
-                
                 Text(buttonCaption)
                     .font(.defaultButtonCaption)
                     .foregroundColor(Color.background)
-                    .frame(maxWidth: .infinity, minHeight: 50)
+                    .frame(maxWidth: .infinity, minHeight: 55)
                     .background(Color.secondaryColor, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                 
             }
-            .padding(20)
+            .padding(.horizontal, 20)
             
         }
     }
