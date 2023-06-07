@@ -21,6 +21,8 @@ struct TabBarView: View {
                 TabView(selection: $selectedTab) {
                     CartView()
                         .tag(TabBar.cart)
+                    FavoriteView()
+                        .tag(TabBar.favorite)
                     SettingsView(darkModeIsEnabled: $darkModeEnabled)
                         .tag(TabBar.seetings)
                     
