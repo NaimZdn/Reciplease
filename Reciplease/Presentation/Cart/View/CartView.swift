@@ -35,21 +35,40 @@ struct CartView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 HStack(spacing: 15) {
-                    TextField("Search for a product", text: $searchText)
-                        .font(.defaultPlaceholder)
-                        .frame(maxWidth: 240)
-                        .overlay(
-                            Rectangle()
-                                .frame(height: 2)
-                                .foregroundColor(.primaryColor)
-                                .padding(.top, 35)
-                        )
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .onChange(of: searchText) { text in
-                            let formattedText = viewModel.removeLeadingSpaces(text)
-                            ingredientsSearched = viewModel.searchIngredients(text: formattedText)
-                        }
                     
+                    ZStack(alignment: .trailing) {
+                        TextField("Search for a product", text: $searchText)
+                            .font(.defaultPlaceholder)
+                            .frame(maxWidth: 240)
+                            .overlay(
+                                Rectangle()
+                                    .frame(height: 2)
+                                    .foregroundColor(.primaryColor)
+                                    .padding(.top, 35)
+                            )
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .onChange(of: searchText) { text in
+                                if text.count > 12 {
+                                    searchText.removeLast()
+                                }
+                                let formattedText = text.trimmingCharacters(in: .whitespaces)
+                                if formattedText.isEmpty {
+                                    searchText = formattedText
+                                } else {
+                                    ingredientsSearched = viewModel.searchIngredients(text: formattedText)
+                                }
+                            }
+                        Button {
+                            searchText = ""
+                        } label: {
+                            if !searchText.isEmpty {
+                                Image("xmark")
+                                    .foregroundColor(Color.primaryColor)
+                                    .padding(.trailing, 7)
+                            }
+                        }
+                    }
+            
                     OptionButton(icon: "plus") {
                         
                     }
@@ -60,8 +79,7 @@ struct CartView: View {
                         FilterView()
                             .presentationDetents([.large, .fraction(0.85)])
                             .presentationDragIndicator(.visible)
-                        
-                        
+      
                     }
                 }
             }
