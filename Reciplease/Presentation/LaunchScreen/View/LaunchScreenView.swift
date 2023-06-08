@@ -15,11 +15,17 @@ struct LaunchScreenView: View {
     
     @State private var showTabBarView = false
     
+    private var logo: String {
+        darkModeEnabled ? "logo-dark" : "logo-light"
+    }
+    
+    @AppStorage("darkModeEnabled") private var darkModeEnabled = false
+    
     var body: some View {
         
         VStack {
             HStack {
-                Image("Logo light")
+                Image(logo)
                     .resizable()
                     .frame(width: 167, height: 30)
                     .padding(.top, isLogoVisible ? 20 : -10)
@@ -34,7 +40,7 @@ struct LaunchScreenView: View {
             Spacer()
             
             VStack {
-                Image("Fridge")
+                Image("fridge")
                     .resizable()
                     .frame(maxWidth: 265, maxHeight: 265)
                     .cornerRadius(300)
@@ -83,9 +89,12 @@ struct LaunchScreenView: View {
                 }
             }
         }
+        .onAppear {
+            ThemeManager.shared.handleTheme(darkMode: darkModeEnabled)
+        }
         .background(Color.background)
         .fullScreenCover(isPresented: $showTabBarView) {
-            TabBarView()
+            TabBarView(darkModeEnabled: $darkModeEnabled)
                 
         }
     }
