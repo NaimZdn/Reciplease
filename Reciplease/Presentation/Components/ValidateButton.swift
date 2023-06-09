@@ -25,6 +25,7 @@ struct ValidateButton: View {
                     .background(Color.secondaryColor, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                 
             }
+            .buttonStyle(.plain)
             .padding(.horizontal, 20)
             
         }

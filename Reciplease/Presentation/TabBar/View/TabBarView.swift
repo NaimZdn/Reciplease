@@ -9,11 +9,7 @@ import SwiftUI
 
 struct TabBarView: View {
     @State private var selectedTab: TabBar = .cart
-    @AppStorage("darkModeEnabled") private var darkModeEnabled = false
-    
-    init() {
-        UITabBar.appearance().isHidden = true
-    }
+    @Binding var darkModeEnabled: Bool
     
     var body: some View {
         ZStack {
@@ -42,6 +38,6 @@ struct TabBarView: View {
 
 struct TabBarView_Previews: PreviewProvider {
     static var previews: some View {
-        TabBarView()
+        TabBarView(darkModeEnabled: .constant(false))
     }
 }
