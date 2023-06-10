@@ -68,7 +68,7 @@ class CartViewModel: ObservableObject {
         Ingredient(name: "Lobster", icon: "🦞"),
         Ingredient(name: "Crab", icon: "🦀"),
         Ingredient(name: "Rabbit", icon: "🐇"),
-        Ingredient(name: "Duc", icon: "🦆"),
+        Ingredient(name: "Duck", icon: "🦆"),
         Ingredient(name: "Fish", icon: "🐟"),
         Ingredient(name: "Chicken", icon: "🐓"),
         Ingredient(name: "Pork", icon: "🐷"),
