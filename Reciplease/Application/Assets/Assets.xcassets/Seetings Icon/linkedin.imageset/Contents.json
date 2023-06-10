@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Star.svg",
+      "filename" : "linkedin.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Star 1.svg",
+      "filename" : "linkedin 1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Star 2.svg",
+      "filename" : "linkedin 2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }
