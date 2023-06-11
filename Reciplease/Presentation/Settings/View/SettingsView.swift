@@ -16,6 +16,10 @@ struct SettingsView: View {
     
     @State private var label = Label.allCases
     
+    @Binding var isAboutUsActive: Bool
+    @Binding var isPrivacyPolicyActive: Bool
+    @Binding var isTermsOfServiceActive: Bool
+    
     var body: some View {
         
         NavigationView {
@@ -43,17 +47,17 @@ struct SettingsView: View {
                         .foregroundColor(.primaryColor)
                         .padding(.bottom, 10)
                               
-                    NavigationLink(destination: AboutUsView()) {
+                    NavigationLink(destination: AboutUsView().onAppear{ isAboutUsActive = true }.onDisappear { isAboutUsActive = false }) {
                         SettingsLabel(text: label[2].rawValue, icon: label[2].icon, darkModeEnabled: $darkModeIsEnabled, isLink: true)
-                        
+                           
                     }
-                    
-                    NavigationLink(destination: TermsOfServiceView()) {
+  
+                    NavigationLink(destination: PrivacyPolicyView().onAppear{ isPrivacyPolicyActive = true }.onDisappear { isPrivacyPolicyActive = false }) {
                         SettingsLabel(text: label[3].rawValue, icon: label[3].icon, darkModeEnabled: $darkModeIsEnabled, isLink: true)
                         
                     }
-                    
-                    NavigationLink(destination: TermsOfServiceView()) {
+                          
+                    NavigationLink(destination: TermsOfServiceView().onAppear{ isTermsOfServiceActive = true }.onDisappear { isTermsOfServiceActive = false }) {
                         SettingsLabel(text: label[4].rawValue, icon: label[4].icon, darkModeEnabled: $darkModeIsEnabled, isLink: true)
                         
                     }
@@ -63,12 +67,12 @@ struct SettingsView: View {
                 Spacer()
                 
             }
+            .edgesIgnoringSafeArea(.bottom)
             .padding(20)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(Color.background)
             
         }
-        
     }
 }
 
@@ -76,6 +80,6 @@ struct SeetingsView_Previews: PreviewProvider {
     @State static private var darkMode = true
     
     static var previews: some View {
-        SettingsView(darkModeIsEnabled: .constant(false))
+        SettingsView(darkModeIsEnabled: .constant(false), isAboutUsActive: .constant(false), isPrivacyPolicyActive: .constant(false), isTermsOfServiceActive: .constant(false))
     }
 }

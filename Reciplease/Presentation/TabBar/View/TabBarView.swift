@@ -8,28 +8,72 @@
 import SwiftUI
 
 struct TabBarView: View {
-    @State private var selectedTab: TabBar = .cart
     @Binding var darkModeEnabled: Bool
+    
+    @State private var selectedTab: TabBar = .cart
+    
+    @State private var isAboutUsActive = false
+    @State private var isPrivacyPolicyActive = false
+    @State private var isTermsOfServiceActive = false
+    
+    @State private var tabBarOpacity: Double = 1
+    
+    init(darkModeEnabled: Binding<Bool>) {
+        self._darkModeEnabled = darkModeEnabled
+        UITabBar.appearance().isHidden = true
+    }
     
     var body: some View {
         ZStack {
-            VStack {       
+            VStack {
                 TabView(selection: $selectedTab) {
                     CartView()
                         .tag(TabBar.cart)
                     FavoriteView()
                         .tag(TabBar.favorite)
-                    SettingsView(darkModeIsEnabled: $darkModeEnabled)
+                    SettingsView(darkModeIsEnabled: $darkModeEnabled, isAboutUsActive: $isAboutUsActive, isPrivacyPolicyActive: $isPrivacyPolicyActive, isTermsOfServiceActive: $isTermsOfServiceActive)
                         .tag(TabBar.seetings)
                     
                 }
-                CustomTabBar(selectedTab: $selectedTab)
-                    .padding(.bottom, 25)
                 
+                if !isAboutUsActive && !isPrivacyPolicyActive && !isTermsOfServiceActive {
+                    CustomTabBar(selectedTab: $selectedTab)
+                        .padding(.bottom, 25)
+                        .opacity(tabBarOpacity)
+
+                }
             }
         }
+        .onChange(of: isAboutUsActive, perform: { newValue in
+            withAnimation(.easeInOut(duration: 0.1)) {
+                if newValue {
+                    tabBarOpacity = 0
+                } else {
+                    tabBarOpacity = 1
+                }
+            }
+        })
+        .onChange(of: isPrivacyPolicyActive, perform: { newValue in
+            withAnimation(.easeInOut(duration: 0.1)) {
+                if newValue {
+                    tabBarOpacity = 0
+                } else {
+                    tabBarOpacity = 1
+                }
+            }
+        })
+        .onChange(of: isTermsOfServiceActive, perform: { newValue in
+            withAnimation(.easeInOut(duration: 0.1)) {
+                if newValue {
+                    tabBarOpacity = 0
+                } else {
+                    tabBarOpacity = 1
+                }
+            }
+        })
         .onAppear {
             ThemeManager.shared.handleTheme(darkMode: darkModeEnabled)
+            
         }
         .background(Color.background)
         .ignoresSafeArea(.keyboard)
