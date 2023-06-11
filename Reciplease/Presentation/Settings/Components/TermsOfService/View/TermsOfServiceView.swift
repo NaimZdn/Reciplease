@@ -8,16 +8,18 @@
 import SwiftUI
 
 struct TermsOfServiceView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     @State private var lastUpdated = "10.06.2023"
     @State private var terms = Terms.allCases
+    
+    @State private var showBackground = false
     
     var body: some View {
         
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
-                Text("Terms of Service")
-                    .font(.defaultTitle)
-                    .foregroundColor(.primaryColor)
+                SectionTitle(showBackground: $showBackground, title: "Terms of Service", duration: 0.5)
                 
                 Text("Last updated : \(lastUpdated)")
                     .font(.defaultLabelCaption)
@@ -42,6 +44,10 @@ By accessing or using the App, you agree to be bound by these Terms. If you disa
 
             }
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: OptionButton(icon: "carret", action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }))
         .padding(20)
         .background(Color.background)
     }

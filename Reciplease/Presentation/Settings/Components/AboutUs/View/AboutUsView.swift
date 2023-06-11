@@ -9,38 +9,23 @@ import SwiftUI
 import WrappingHStack
 
 struct AboutUsView: View {
+    @Environment(\.presentationMode) var presentationMode
     
     @State private var caption = "My resume"
     @State private var showBackgroundHello = false
     @State private var showBackgroundSkills = false
     @State private var showBackgroundSocial = false
-    
     @State private var technos = Technos.allCases
+    
+    @State var showGithub = false
+    @State var showLinkedin = false
 
     var body: some View {
         VStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 15) {
-                    
-                    Text("Hello everyone !")
-                        .font(.defaultTitle)
-                        .foregroundColor(.primaryColor)
-                        .background(
-                            ZStack(alignment: .leading) {
-                                Rectangle()
-                                    .frame(width: .infinity ,height: 10)
-                                    .padding(.top, 5)
-                                    .foregroundColor(.secondaryColor)
-                                    .onAppear{
-                                        withAnimation(.easeInOut(duration: 0.5)) {
-                                            showBackgroundHello = true
-                                        }
-                                        
-                                    }
-                            }
-                        )
+                    SectionTitle(showBackground: $showBackgroundHello, title: "Hello everyone !", duration: 0.5)
                         .padding(.top, 10)
-                        .frame(maxWidth: showBackgroundHello ? .infinity : 0 ,maxHeight: 20, alignment: .leading)
                     
                     Text("I'm Naïm a french iOS developper and designer.")
                         .font(.defaultBody)
@@ -51,26 +36,9 @@ struct AboutUsView: View {
                 Divider()
                 
                 VStack(alignment: .leading, spacing: 25) {
-                    Text("App techno")
-                        .font(.defaultTitle)
-                        .foregroundColor(.primaryColor)
-                        .background(
-                            ZStack(alignment: .leading) {
-                                Rectangle()
-                                    .frame(width: .infinity ,height: 10)
-                                    .padding(.top, 5)
-                                    .foregroundColor(.secondaryColor)
-                                    .onAppear{
-                                        withAnimation(.easeInOut(duration: 1)) {
-                                            showBackgroundSkills = true
-                                        }
-                                        
-                                    }
-                            }
-                        )
+                    SectionTitle(showBackground: $showBackgroundSkills, title: "App technos", duration: 1)
                         .padding(.top, 10)
-                        .frame(maxWidth: showBackgroundSkills ? .infinity : 0 ,maxHeight: 20, alignment: .leading)
-                    
+                        
                     WrappingHStack(technos, id: \.self, spacing: .constant(10), lineSpacing: 8) { techno in
                         TechnosLabel(techno: techno.rawValue)
                         
@@ -81,61 +49,36 @@ struct AboutUsView: View {
                 Divider()
                 
                 VStack(alignment: .leading, spacing: 15) {
-                    Text("App description")
-                        .font(.defaultTitle)
-                        .foregroundColor(.primaryColor)
-                        .background(
-                            ZStack(alignment: .leading) {
-                                Rectangle()
-                                    .frame(width: .infinity ,height: 10)
-                                    .padding(.top, 5)
-                                    .foregroundColor(.secondaryColor)
-                                    .onAppear{
-                                        withAnimation(.easeInOut(duration: 1.5)) {
-                                            showBackgroundSocial = true
-                                        }
-                                        
-                                    }
-                            }
-                        )
+                    SectionTitle(showBackground: $showBackgroundSocial, title: "App description", duration: 1.5)
                         .padding(.top, 10)
-                        .frame(maxWidth: showBackgroundSocial ? .infinity : 0 ,maxHeight: 20, alignment: .leading)
                     
-                }
-                .padding(.bottom, 20)
-                
-                
-                Text("""
+                    Text("""
                      The essential application for discovering and saving your favourite recipes.
                      Create your shopping lists with missing ingredients.
                      Enhance your cooking experience with Reciplease!
                      """)
                     .font(.defaultBody)
                     .foregroundColor(.primaryColor)
-               
+                    
+                }
+                .padding(.bottom, 20)
+
                 Spacer()
     
             }
             HStack(alignment: .center, spacing: 50) {
-                Image("envelope")
-                    .resizable()
-                    .foregroundColor(.primaryColor)
-                    .frame(width: 30, height: 30)
                 
-                Image("linkedin")
-                    .resizable()
-                    .foregroundColor(.primaryColor)
-                    .frame(width: 30, height: 30)
+                LinkButton(isPresented: $showLinkedin, icon: Link.linkedin.rawValue, link: Link.linkedin.link)
                 
-                Image("github")
-                    .resizable()
-                    .foregroundColor(.primaryColor)
-                    .frame(width: 25, height: 25)
-                
+                LinkButton(isPresented: $showGithub, icon: Link.github.rawValue, link: Link.github.link)
             }
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: OptionButton(icon: "carret", action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }))
         .padding(.horizontal, 20)
-        .padding(.vertical, 30)
+        .padding(.top, 30)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(Color.background)
     }
