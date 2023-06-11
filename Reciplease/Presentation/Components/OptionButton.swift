@@ -25,6 +25,7 @@ struct OptionButton: View {
                         .stroke(Color.primaryColor, lineWidth: 2 )
                 )
         }
+        .frame(minWidth: 37, minHeight: 37)
         .buttonStyle(PlainButtonStyle())    
     }
 }
