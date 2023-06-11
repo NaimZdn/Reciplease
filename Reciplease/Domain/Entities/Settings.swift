@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum Label: String, CaseIterable {
     case notification = "Enable notification"
@@ -66,4 +67,51 @@ enum Terms: String, CaseIterable {
             return "If you have any questions about these Terms, please contact us at support@reciplease.io."
         }
     }
+}
+
+enum PrivacyPolicy: String, CaseIterable {
+    case informationCollection = "Information Collection and Use"
+    case data = "Data Security"
+    case informationSharing = "Information Sharing"
+    case changes = "Changes to this Privacy Policy"
+    case consent = "Your Consent"
+    
+    var content: String {
+        switch self {
+        case .informationCollection:
+            return "We may collect personal information, such as your name and email address, when you interact with our app.\n\nThis information is used to personalize your experience and improve our services."
+        case .data:
+            return "We employ industry-standard security measures to protect your personal information from unauthorized access or disclosure.\n\nWe use encryption, firewalls, and secure server infrastructure to safeguard your data."
+        case .informationSharing:
+            return "We do not sell, trade, or share your personal information with third parties without your consent, except as required by law."
+        case .changes:
+            return "We reserve the right to update or modify this Privacy Policy at any time. Any changes will be effective when posted on this page."
+        case .consent:
+            return "By using our app, you consent to our Privacy Policy and agree to its terms and conditions."
+        }
+    }
+}
+
+enum Link: String,CaseIterable {
+    case linkedin
+    case github
+    
+    var isPresented: Bool {
+        switch self {
+        case .linkedin:
+            return false
+        case .github:
+            return false
+        }
+    }
+    
+    var link: String {
+        switch self {
+        case .linkedin:
+            return "https://www.linkedin.com/in/naim-zidouni/"
+        case .github:
+            return "https://github.com/NaimZdn"
+        }
+    }
+    
 }
