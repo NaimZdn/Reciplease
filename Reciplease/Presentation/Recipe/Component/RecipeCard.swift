@@ -37,7 +37,7 @@ struct RecipeCard: View {
                     .padding(.leading, 7)
                     
                     HStack {
-                        CardOption(optionIcon: "timer", optionText: $timerText)
+                        CardOption(optionText: $timerText, optionIcon: "timer")
                     }
                     .padding(.leading, 7)
                     
@@ -45,8 +45,8 @@ struct RecipeCard: View {
                     
                     HStack {
                         Spacer()
-                        CardOption(optionIcon: "tablewar", optionText: $tablewarText)
-                        CardOption(optionIcon: "kcal", optionText: $kcalText)
+                        CardOption(optionText: $tablewarText, optionIcon: "tablewar")
+                        CardOption(optionText: $kcalText, optionIcon: "kcal")
                     }
                 }
                 .padding(.top, 10)

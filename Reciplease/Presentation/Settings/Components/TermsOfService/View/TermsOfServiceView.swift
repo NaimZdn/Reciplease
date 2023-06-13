@@ -11,8 +11,7 @@ struct TermsOfServiceView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State private var lastUpdated = "10.06.2023"
-    @State private var terms = Terms.allCases
-    
+    @State private var terms = Term.allCases
     @State private var showBackground = false
     
     var body: some View {
@@ -36,20 +35,27 @@ By accessing or using the App, you agree to be bound by these Terms. If you disa
                 .font(.defaultBody)
                 .foregroundColor(.primaryColor)
                 .padding(.bottom, 10)
+                
+                Divider()
 
-                ForEach(terms, id: \.self) { term in
+                ForEach(terms.indices, id: \.self) { index in
+                    let term = terms[index]
                     TermsSection(title: term.rawValue, content: term.content)
-    
+                    
+                    if index != terms.indices.last {
+                        Divider()
+                    }
                 }
-
             }
         }
         .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: OptionButton(icon: "carret", action: {
+        .navigationBarItems(leading: OptionButton(icon: "caret-left", action: {
             self.presentationMode.wrappedValue.dismiss()
-        }))
-        .padding(20)
+        }).padding(.top, 25))
+        .padding(.horizontal, 20)
+        .padding(.vertical, 30)
         .background(Color.background)
+        
     }
 }
 

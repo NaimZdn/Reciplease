@@ -10,67 +10,25 @@ import SwiftUI
 
 extension Color {
     
-    static var primaryColor: Color {
-        Color("primaryColor")
-    }
-    
-    static var secondaryColor = Color("secondaryColor")
-    
-    static var background: Color {
-        Color("background")
-    }
-    
-    static var tabBarIcon: Color {
-        Color("tabBarIcon")
-    }
-    
-    static var tabBarIconSelected: Color {
-        Color("tabBarIconSelected")
-    }
-    
-    static var placeholder: Color {
-        Color("placeholder")
-    }
-    
-    static var cardTitleIcon: Color {
-        Color("cardTitleIcon")
-    }
-    
-    static var labelBackground : Color {
-        Color("labelBackground")
-    }
-    
-    static var labelBody : Color {
-        Color("labelBody")
-    }
-    
-    static var cardFavoriteLabel = Color("cardFavoriteLabel")
-    
-    static var selectorStroke = Color("selectorStroke")
-    
-    static var selectorBackground = Color("selectorBackground")
-    
-    static var cardBackground : Color {
-        Color("cardBackground")
-    }
-    
-    static var cardOptionText = Color("cardOptionText")
-    
-    static var nutrimentProtein : Color {
-        Color("nutrimentProtein")
-    }
-    
-    static var nutrimentFat : Color {
-        Color("nutrimentFat")
-    }
-    
-    static var nutrimentCarb : Color {
-        Color("nutrimentCarb")
-    }
-    
-    static var ingredientChecked : Color {
-        Color("ingredientChecked")
-    }
+    static let primaryColor = Color("primaryColor")
+    static let secondaryColor = Color("secondaryColor")
+    static let background = Color("background")
+    static let tabBarIcon = Color("tabBarIcon")
+    static let tabBarIconSelected = Color("tabBarIconSelected")
+    static let placeholder = Color("placeholder")
+    static let cardTitleIcon = Color("cardTitleIcon")
+    static let labelBackground = Color("labelBackground")
+    static let labelBody = Color("labelBody")
+    static let titleBackground = Color("titleBackground")
+    static let cardFavoriteLabel = Color("cardFavoriteLabel")
+    static let selectorStroke = Color("selectorStroke")
+    static let selectorBackground = Color("selectorBackground")
+    static let cardBackground = Color("cardBackground")
+    static let cardOptionText = Color("cardOptionText")
+    static let nutrimentProtein = Color("nutrimentProtein")
+    static let nutrimentFat = Color("nutrimentFat")
+    static let nutrimentCarb = Color("nutrimentCarb")
+    static let ingredientChecked = Color("ingredientChecked")
 }
 
 extension Font {
@@ -93,51 +51,22 @@ extension Font {
     
     // MARK: - Default
     
-    static var defaultOption: Font {
-        fontLight(13)
-    }
-    
-    static var defaultPlaceholder: Font {
-        fontRegular(14)
-    }
-    
-    static var defaultLabelCaption: Font {
-        fontRegular(15)
-    }
-    
-    static var defaultBody: Font {
-        fontRegular(17)
-    }
-    
-    static var defaultTitle2: Font {
-        fontMedium(20)
-    }
-    
-    static var defaultButtonCaption: Font {
-        fontSemiBold(20)
-    }
-    
-    static var defaultTitle: Font {
-        fontSemiBold(30)
-    }
+    static var defaultOption = fontLight(13)
+    static var defaultPlaceholder = fontRegular(14)
+    static var defaultLabelCaption = fontRegular(15)
+    static var defaultBody = fontRegular(17)
+    static var defaultTitle2 = fontMedium(20)
+    static var defaultTitle3 = fontSemiBold(25)
+    static var defaultButtonCaption = fontSemiBold(20)
+    static var defaultTitle = fontSemiBold(30)
     
     // MARK: - Card
     
-    static var cardOption: Font {
-        fontLight(13)
-    }
-    
-    static var cardValue: Font {
-        fontMedium(16)
-    }
+    static var cardOption = fontLight(13)
+    static var cardValue = fontMedium(16)
     
     // MARK: - Nutriment Label
     
-    static var nutrimentTitle: Font {
-        fontMedium(14)
-    }
-    
-    static var nutrimentValue: Font {
-        fontMedium(17)
-    }
+    static var nutrimentTitle = fontMedium(14)
+    static var nutrimentValue = fontMedium(17)
 }

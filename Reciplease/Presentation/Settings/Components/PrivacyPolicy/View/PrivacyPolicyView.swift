@@ -26,18 +26,22 @@ struct PrivacyPolicyView: View {
                 
                 Divider()
 
-                ForEach(privacyPolicy, id: \.self) { policy in
+                ForEach(privacyPolicy.indices, id: \.self) { index in
+                    let policy = privacyPolicy[index]
                     TermsSection(title: policy.rawValue, content: policy.content)
-                    Divider()
-    
+                    
+                    if index != privacyPolicy.indices.last {
+                        Divider()
+                    }
                 }
             }
         }
         .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: OptionButton(icon: "carret", action: {
+        .navigationBarItems(leading: OptionButton(icon: "caret-left", action: {
             self.presentationMode.wrappedValue.dismiss()
-        }))
-        .padding(20)
+        }).padding(.top, 25))
+        .padding(.horizontal, 20)
+        .padding(.vertical, 30)
         .background(Color.background)
     }
 }
