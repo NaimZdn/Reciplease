@@ -30,15 +30,15 @@ struct FavoriteCard: View {
                 .foregroundColor(.cardTitleIcon)
                 .padding(.bottom, 10)
             
-            CardOption(optionIcon: "timer", optionText: .constant("25 min"))
+            CardOption(optionText: .constant("25 min"), optionIcon: "timer")
                 .padding(.bottom, 5)
             
             Spacer()
             
-            CardOption(optionIcon: "tablewar", optionText: .constant("1 ppl"))
+            CardOption(optionText: .constant("1 ppl"), optionIcon: "tablewar")
                 .padding(.bottom, 5)
             
-            CardOption(optionIcon: "kcal", optionText: .constant("412 kcal"))
+            CardOption(optionText: .constant("412 kcal"), optionIcon: "kcal")
             
             
         }
