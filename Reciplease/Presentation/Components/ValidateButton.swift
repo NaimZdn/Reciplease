@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ValidateButton: View {
-    
     @Binding var buttonCaption: String
+    
     var action: () -> Void
     
     var body: some View {

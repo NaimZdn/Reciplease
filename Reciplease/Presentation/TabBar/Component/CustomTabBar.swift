@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CustomTabBar: View {
     @Binding var selectedTab: TabBar
-    @State var present = true
     
     var body: some View {
         VStack {

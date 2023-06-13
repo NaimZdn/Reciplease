@@ -30,9 +30,7 @@ struct FavoriteCardButton: View {
         .padding(.horizontal, 10)
         .padding(.vertical, 6)
         .background(Color.cardFavoriteLabel, in: RoundedRectangle(cornerRadius: 7))
-        
-
-        
+             
     }
 }
 

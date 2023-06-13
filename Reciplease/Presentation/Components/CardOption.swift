@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct CardOption: View {
-    var optionIcon : String
     @Binding var optionText : String
+    var optionIcon : String
     
     var body: some View {
         HStack(spacing: 5) {
@@ -28,6 +28,6 @@ struct CardOption: View {
 
 struct CardOption_Previews: PreviewProvider {
     static var previews: some View {
-        CardOption(optionIcon: "tablewar", optionText: .constant("1 ppl"))
+        CardOption(optionText: .constant("1 ppl"), optionIcon: "tablewar")
     }
 }

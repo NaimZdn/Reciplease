@@ -10,8 +10,6 @@ import SwiftUI
 struct FavoriteView: View {
     @State private var searchText = ""
     
-    @State private var array = ["hi", "hello"]
-    
     var body: some View {
         VStack {
             VStack {
@@ -35,7 +33,6 @@ struct FavoriteView: View {
                     OptionButton(icon: "filter") {
                         
                     }
-                    
                 }
             }
             .padding(.vertical, 10)

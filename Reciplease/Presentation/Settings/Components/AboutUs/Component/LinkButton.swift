@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LinkButton: View {
     @Binding var isPresented: Bool
+    
     var icon: String
     var link: String
     
@@ -22,7 +23,7 @@ struct LinkButton: View {
                 .frame(width: 30, height: 30)
         }
         .sheet(isPresented: $isPresented) {
-            Safari(url: link)
+            SafariRepresentable(url: link)
         }
     }
 }

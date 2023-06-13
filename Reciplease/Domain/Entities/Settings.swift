@@ -31,7 +31,7 @@ enum Label: String, CaseIterable {
     }
 }
 
-enum Technos: String, CaseIterable {
+enum Techno: String, CaseIterable {
     case swift = "Swift"
     case swiftUi = "Swift UI"
     case combine = "Combine"
@@ -40,7 +40,7 @@ enum Technos: String, CaseIterable {
     case figma = "Figma"
 }
 
-enum Terms: String, CaseIterable {
+enum Term: String, CaseIterable {
     case content = "Content"
     case intellectualProperty = "Intellectual property"
     case termination = "Termination"
@@ -113,5 +113,4 @@ enum Link: String,CaseIterable {
             return "https://github.com/NaimZdn"
         }
     }
-    
 }

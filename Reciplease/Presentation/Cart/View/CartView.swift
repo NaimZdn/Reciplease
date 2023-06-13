@@ -13,7 +13,6 @@ struct CartView: View {
     @State private var showAddIngredient = false
     @State private var isLabelVisible: [Bool] = []
     @State private var isHeaderVisible = false
-    
     @State private var ingredientsSearched: [Ingredient] = []
     
     @ObservedObject var viewModel = CartViewModel()
@@ -32,7 +31,7 @@ struct CartView: View {
     
     var body: some View {
         VStack {
-            VStack() {
+            VStack {
                 Text("What's in your fridge ?")
                     .font(.defaultTitle)
                     .foregroundColor(Color.primaryColor)

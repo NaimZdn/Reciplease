@@ -10,7 +10,6 @@ import SwiftUI
 struct AddIngredient: View {
     @State private var id = ""
     @State private var name = ""
-    
     @State private var idCounter = 0
     @State private var nameCounter = 0
     
