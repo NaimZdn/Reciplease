@@ -11,15 +11,14 @@ struct LaunchScreenView: View {
     @State private var caption = "Let's start"
     @State private var isLogoVisible = false
     @State private var isMainVisible = false
-    @State private var isButtonVisible = false
-    
+    @State private var isButtonVisible = false    
     @State private var showTabBarView = false
     
-    private var logo: String {
-        darkModeEnabled ? "logo-dark" : "logo-light"
-    }
+    @EnvironmentObject private var appSettings: AppSettings
     
-    @AppStorage("darkModeEnabled") private var darkModeEnabled = false
+    private var logo: String {
+        appSettings.darkModeEnabled ? "logo-dark" : "logo-light"
+    }
     
     var body: some View {
         
@@ -90,11 +89,11 @@ struct LaunchScreenView: View {
             }
         }
         .onAppear {
-            ThemeManager.shared.handleTheme(darkMode: darkModeEnabled)
+            ThemeManager.shared.handleTheme(darkMode: appSettings.darkModeEnabled)
         }
         .background(Color.background)
         .fullScreenCover(isPresented: $showTabBarView) {
-            TabBarView(darkModeEnabled: $darkModeEnabled)
+            TabBarView()
                 
         }
     }

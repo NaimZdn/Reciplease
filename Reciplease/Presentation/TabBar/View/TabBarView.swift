@@ -8,18 +8,15 @@
 import SwiftUI
 
 struct TabBarView: View {
-    @Binding var darkModeEnabled: Bool
-    
     @State private var selectedTab: TabBar = .cart
-    
     @State private var isAboutUsActive = false
     @State private var isPrivacyPolicyActive = false
     @State private var isTermsOfServiceActive = false
-    
     @State private var tabBarOpacity: Double = 1
     
-    init(darkModeEnabled: Binding<Bool>) {
-        self._darkModeEnabled = darkModeEnabled
+    @EnvironmentObject private var appSettings: AppSettings
+    
+    init() {
         UITabBar.appearance().isHidden = true
     }
     
@@ -31,7 +28,7 @@ struct TabBarView: View {
                         .tag(TabBar.cart)
                     FavoriteView()
                         .tag(TabBar.favorite)
-                    SettingsView(darkModeIsEnabled: $darkModeEnabled, isAboutUsActive: $isAboutUsActive, isPrivacyPolicyActive: $isPrivacyPolicyActive, isTermsOfServiceActive: $isTermsOfServiceActive)
+                    SettingsView(isAboutUsActive: $isAboutUsActive, isPrivacyPolicyActive: $isPrivacyPolicyActive, isTermsOfServiceActive: $isTermsOfServiceActive)
                         .tag(TabBar.seetings)
                     
                 }
@@ -72,7 +69,7 @@ struct TabBarView: View {
             }
         })
         .onAppear {
-            ThemeManager.shared.handleTheme(darkMode: darkModeEnabled)
+            ThemeManager.shared.handleTheme(darkMode: appSettings.darkModeEnabled)
             
         }
         .background(Color.background)
@@ -81,7 +78,10 @@ struct TabBarView: View {
 }
 
 struct TabBarView_Previews: PreviewProvider {
+    @StateObject private static var appSettings = AppSettings()
+    
     static var previews: some View {
-        TabBarView(darkModeEnabled: .constant(false))
+        TabBarView()
+            .environmentObject(appSettings)
     }
 }

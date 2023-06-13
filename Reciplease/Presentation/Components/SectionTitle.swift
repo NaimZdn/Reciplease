@@ -21,7 +21,7 @@ struct SectionTitle: View {
                     Rectangle()
                         .frame(maxWidth: showBackground ? .infinity : 0, maxHeight: 10)
                         .padding(.top, 5)
-                        .foregroundColor(.secondaryColor)
+                        .foregroundColor(.titleBackground)
                         .onAppear{
                             withAnimation(.easeInOut(duration: duration)) {
                                 showBackground = true
