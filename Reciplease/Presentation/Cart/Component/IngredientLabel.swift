@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct IngredientLabel: View {
-    @State private var isSelected = false
+    @Binding var isSelected: Bool
     var ingredientIcon: String
     var ingredientName: String
     
@@ -44,6 +44,6 @@ struct IngredientLabel_Previews: PreviewProvider {
     @ObservedObject static private var viewModel = CartViewModel()
     
     static var previews: some View {
-        IngredientLabel(ingredientIcon: viewModel.ingredients[1].icon, ingredientName: viewModel.ingredients[1].name)
+        IngredientLabel(isSelected: .constant(true), ingredientIcon: viewModel.ingredients[1].icon, ingredientName: viewModel.ingredients[1].name)
     }
 }

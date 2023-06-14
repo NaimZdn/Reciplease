@@ -11,4 +11,5 @@ struct Ingredient: Identifiable, Hashable {
     let id = UUID()
     var name: String
     var icon: String
+    var isSelected: Bool
 }
