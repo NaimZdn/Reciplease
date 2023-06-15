@@ -93,7 +93,7 @@ struct AddIngredient: View {
             Spacer()
 
             ValidateButton(buttonCaption: .constant("Add")) {
-                viewModel.addIngredient(name: name, icon: id)
+                viewModel.addIngredient(name: name, icon: id, isSelected: false)
                 print(viewModel.ingredients)
             }
         }
