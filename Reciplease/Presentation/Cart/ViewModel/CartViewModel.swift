@@ -105,6 +105,11 @@ class CartViewModel: ObservableObject {
         components.removeAll { $0.isEmpty }
         return components.joined(separator: " ")
     }
+    
+    func isNotEmoji(_ string: String) -> Bool {
+        let emojiRange = string.range(of: "\\p{Emoji}", options: .regularExpression)
+        return emojiRange == nil && !string.isEmpty
+    }
 }
 
 
