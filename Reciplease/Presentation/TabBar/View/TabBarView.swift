@@ -14,6 +14,8 @@ struct TabBarView: View {
     @State private var isTermsOfServiceActive = false
     @State private var tabBarOpacity: Double = 1
     
+    @StateObject var cartViewModel = CartViewModel()
+    
     @EnvironmentObject private var appSettings: AppSettings
     
     init() {
@@ -24,7 +26,7 @@ struct TabBarView: View {
         ZStack {
             VStack {
                 TabView(selection: $selectedTab) {
-                    CartView()
+                    CartView(viewModel: cartViewModel)
                         .tag(TabBar.cart)
                     FavoriteView()
                         .tag(TabBar.favorite)
