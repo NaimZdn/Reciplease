@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class CartViewModel: ObservableObject {
     @Published var ingredients: [Ingredient] = [
@@ -77,10 +78,18 @@ class CartViewModel: ObservableObject {
         Ingredient(name: "Ice", icon: "🧊", isSelected: false),
         Ingredient(name: "Salt", icon: "🧂", isSelected: false),
     ]
-
+    
+    @Published var ingredientsSelected: [Ingredient] = []
+    
     func addIngredient(name: String, icon: String, isSelected: Bool) {
         let newIngredient = Ingredient(name: name, icon: icon, isSelected: isSelected)
         ingredients.append(newIngredient)
+    }
+    
+    func deleteIngredient(_ ingredient: Ingredient) {
+        if let index = ingredientsSelected.firstIndex(of: ingredient) {
+            ingredientsSelected.remove(at: index)
+        }
     }
     
     func searchIngredients(text input: String) -> [Ingredient] {
@@ -93,6 +102,19 @@ class CartViewModel: ObservableObject {
             }
         }
         return ingredientsList
+    }
+    
+    func bindingForIngredient(_ ingredient: Ingredient) -> Binding<Bool> {
+        Binding<Bool>(
+            get: { self.ingredientsSelected.contains(ingredient) },
+            set: { newValue in
+                if newValue {
+                    self.ingredientsSelected.append(ingredient)
+                } else {
+                    self.ingredientsSelected.removeAll { $0 == ingredient }
+                }
+            }
+        )
     }
     
     func containsOnlySpaces(_ input: String) -> Bool {
