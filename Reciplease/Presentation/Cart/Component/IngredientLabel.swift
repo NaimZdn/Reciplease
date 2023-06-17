@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct IngredientLabel: View {
+    @ObservedObject var viewModel: CartViewModel
+    
     @Binding var ingredientsSelected: [Ingredient]
     @Binding var isSelected: Bool
     var ingredientIcon: String
     var ingredientName: String
-    
-    
-    @ObservedObject private var viewModel = CartViewModel()
     
     var body: some View {
         VStack {
@@ -40,7 +39,7 @@ struct IngredientLabel: View {
                         .foregroundColor(.cardTitleIcon)
                 }
                 .frame(maxWidth: 170, minHeight: 105)
-            
+                
                 .background(isSelected ? Color.selectorBackground : Color.labelBackground, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
@@ -58,6 +57,6 @@ struct IngredientLabel_Previews: PreviewProvider {
     @ObservedObject static private var viewModel = CartViewModel()
     
     static var previews: some View {
-        IngredientLabel(ingredientsSelected: .constant([]), isSelected: .constant(false), ingredientIcon: viewModel.ingredients[1].icon, ingredientName: viewModel.ingredients[1].name)
+        IngredientLabel(viewModel: CartViewModel(), ingredientsSelected: .constant([]), isSelected: .constant(false), ingredientIcon: viewModel.ingredients[1].icon, ingredientName: viewModel.ingredients[1].name)
     }
 }
