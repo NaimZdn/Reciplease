@@ -8,135 +8,138 @@
 import SwiftUI
 
 struct CartView: View {
+    @ObservedObject var viewModel: CartViewModel
+    
     @State private var searchText = ""
-    @State private var showFilters = false
+    @State private var showCart = false
     @State private var showAddIngredient = false
-    @State private var isLabelVisible: [Bool] = []
     @State private var isHeaderVisible = false
-    @State private var ingredientsSearched: [Ingredient] = []
-    
-    @ObservedObject var viewModel = CartViewModel()
-    
-    private var isSearchBarEmpty: Bool {
-        viewModel.containsOnlySpaces(searchText)
-    }
-    
-    private var ingredientsCount: Int {
-        viewModel.ingredients.count
-    }
-    
-    init() {
-        _isLabelVisible = State(initialValue: Array(repeating: false, count: ingredientsCount))
-    }
+    @State private var isButtonVisible = false
+    @State private var visibleIndices: [Int] = []
+    @State private var caption = "Find recipe"
     
     var body: some View {
-        VStack {
+        NavigationView {
             VStack {
-                Text("What's in your fridge ?")
-                    .font(.defaultTitle)
-                    .foregroundColor(Color.primaryColor)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                VStack {
+                    Text("What's in your fridge ?")
+                        .font(.defaultTitle)
+                        .foregroundColor(Color.primaryColor)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    HStack(spacing: 15) {
+                        CustomTextField(text: $searchText, placeholder: "Search a product", charactersLimit: 12, size: 240, charactersCounter: false)
+                        
+                        OptionButton(icon: "plus") {
+                            showAddIngredient = true
+                        }
+                        .sheet(isPresented: $showAddIngredient) {
+                            CreateIngredientView(viewModel: viewModel)
+                                .presentationDetents([.large, .fraction(0.7)])
+                                .presentationDragIndicator(.visible)
+                            
+                        }
+                        ZStack {
+                            OptionButton(icon: "cart-outline") {
+                                showCart = true
+                            }
+                            .padding(.trailing, 5)
+                            .sheet(isPresented: $showCart) {
+                                CartModalView(viewModel: viewModel)
+                                    .presentationDetents([.large, .fraction(0.85)])
+                                    .presentationDragIndicator(.visible)
+                                
+                            }
+                            
+                            Text("\($viewModel.ingredientsSelected.count)")
+                                .font(.defaultCartLabel)
+                                .foregroundColor(Color.white)
+                            
+                            
+                                .background(Color.secondaryColor
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                    .mask(
+                                        Capsule()
+                                            .fill()
+                                            .frame(minWidth: 20, minHeight: 20, alignment: .center)
+                                    )
+                                )
+                                .opacity(!$viewModel.ingredientsSelected.isEmpty ? 1 : 0)
+                                .padding(.bottom, 35)
+                                .padding(.leading, 30)
+                            
+                        }   
+                    }
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, isHeaderVisible ? 0 : 50 )
+                .opacity(isHeaderVisible ? 1 : 0)
+                .onAppear {
+                    withAnimation(.easeInOut(duration: 0.5)) {
+                        isHeaderVisible = true
+                    }
+                }
+                .padding(.vertical, 10)
+                .background(Color.background)
                 
-                HStack(spacing: 15) {
-                    ZStack(alignment: .trailing) {
-                        TextField("Search for a product", text: $searchText)
-                            .font(.defaultPlaceholder)
-                            .frame(maxWidth: 240)
-                            .overlay(
-                                Rectangle()
-                                    .frame(height: 2)
-                                    .foregroundColor(.primaryColor)
-                                    .padding(.top, 35)
-                            )
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .onChange(of: searchText) { text in
-                                if text.count > 12 {
-                                    searchText.removeLast()
+                ScrollView {
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+                        ForEach(Array(viewModel.ingredients.enumerated().filter { searchText.isEmpty || $0.element.name.lowercased().contains(searchText.lowercased().trimmingCharacters(in: .whitespaces)) }), id: \.element) { (index, ingredient) in
+                            
+                            let ingredient = viewModel.ingredients[index]
+                            let isVisible = visibleIndices.contains(index)
+                            
+                            IngredientLabel(ingredientsSelected: $viewModel.ingredientsSelected, isSelected: viewModel.bindingForIngredient(ingredient), ingredientIcon: ingredient.icon, ingredientName: ingredient.name)
+                                .opacity(isVisible ? 1 : 0)
+                                .padding(.top, isVisible ? 0 : 20)
+                                .onAppear {
+                                    if index < 8 && isHeaderVisible {
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1 * Double(index)) {
+                                            withAnimation(.easeInOut(duration: 0.3)) {
+                                                visibleIndices.append(index)
+                                            }
+                                        }
+                                    } else {
+                                        visibleIndices.append(index)
+                                    }
                                 }
-                                let formattedText = text.trimmingCharacters(in: .whitespaces)
-                                if formattedText.isEmpty {
-                                    searchText = formattedText
-                                } else {
-                                    ingredientsSearched = viewModel.searchIngredients(text: formattedText)
-                                }
-                            }
-                        Button {
-                            searchText = ""
-                        } label: {
-                            if !searchText.isEmpty {
-                                Image("xmark")
-                                    .foregroundColor(Color.primaryColor)
-                                    .padding(.trailing, 7)
-                            }
                         }
                     }
-            
-                    OptionButton(icon: "plus") {
-                        showAddIngredient = true
-                    }
-                    .sheet(isPresented: $showAddIngredient) {
-                        AddIngredient(viewModel: viewModel)
-                            .presentationDetents([.large, .fraction(0.6)])
-                            .presentationDragIndicator(.visible)
-      
-                    }
-                    
-                    OptionButton(icon: "filter") {
-                        showFilters = true
-                    }
-                    .sheet(isPresented: $showFilters) {
-                        FilterView()
-                            .presentationDetents([.large, .fraction(0.85)])
-                            .presentationDragIndicator(.visible)
-      
-                    }
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 20)
                 }
             }
-            .padding(.top, isHeaderVisible ? 0 : 50 )
-            .opacity(isHeaderVisible ? 1 : 0)
-            .onAppear {
-                withAnimation(.easeInOut(duration: 0.5)) {
-                    isHeaderVisible = true
+            .safeAreaInset(edge: .bottom, content: {
+                if !$viewModel.ingredientsSelected.isEmpty {
+                    NavigationLink(destination: RecipeView()) {
+                        Text("Find recipe")
+                            .font(.defaultButtonCaption)
+                            .foregroundColor(Color.background)
+                            .frame(maxWidth: .infinity, minHeight: 55)
+                            .background(Color.secondaryColor, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    }
+                    .padding(.horizontal, 20)
+                    .onAppear {
+                        withAnimation(.easeInOut(duration: 0.5)) {
+                            isButtonVisible = true
+                        }
+                    }
+                    .onDisappear {
+                        withAnimation(.easeInOut(duration: 0.5)) {
+                            isButtonVisible = false
+                        }
+                    }
+                    .opacity(isButtonVisible ? 1 : 0)
+                    .padding(.bottom, isButtonVisible ? 10 : -50)
                 }
-            }
-            .padding(.vertical, 10)
+            })
             .background(Color.background)
-            
-            ScrollView {
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                    ForEach(viewModel.ingredients.indices, id: \.self) { index in
-                        IngredientLabel(ingredientIcon: viewModel.ingredients[index].icon, ingredientName: viewModel.ingredients[index].name)
-                            .opacity(isLabelVisible[index] ? 1 : 0)
-                            .padding(.top, isLabelVisible[index] ? 0 : 20)
-                            .onAppear {
-                                if index < 8 && isHeaderVisible {
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1 * Double(index)) {
-                                        withAnimation(.easeInOut(duration: 0.3)) {
-                                            isLabelVisible[index] = true
-                                        }
-                                    }
-                                } else {
-                                    isLabelVisible[index] = true
-                                }
-                            }
-                    }
-                }
-                .padding(.vertical, 20)
-            }
         }
-        .onChange(of: viewModel.ingredients) { _ in
-            if isLabelVisible.count != ingredientsCount {
-                isLabelVisible = Array(repeating: true, count: ingredientsCount)
-            }
-        }
-        .padding(.horizontal, 20)
-        .background(Color.background)
-        
     }
 }
 
 struct CartView_Previews: PreviewProvider {
     static var previews: some View {
-        CartView()
+        CartView(viewModel: CartViewModel())
     }
 }
