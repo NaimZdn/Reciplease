@@ -8,16 +8,12 @@
 import SwiftUI
 
 struct CartModalView: View {
-    @Binding var ingredientSelected: [Ingredient]
+    @Environment(\.presentationMode) var presentationMode
     
-    private func deleteIngredient(_ ingredient: Ingredient) {
-        if let index = ingredientSelected.firstIndex(of: ingredient) {
-            ingredientSelected.remove(at: index)
-        }
-    }
+    @ObservedObject var viewModel: CartViewModel
     
     var body: some View {
-        if !ingredientSelected.isEmpty {
+        if !viewModel.ingredientsSelected.isEmpty {
             VStack(alignment: .leading, spacing: 0) {
                 Text("Cart")
                     .font(.defaultTitle)
@@ -26,12 +22,12 @@ struct CartModalView: View {
                     .padding(.top, 20)
                 
                 List {
-                    ForEach(ingredientSelected, id: \.self) { ingredient in
+                    ForEach(viewModel.ingredientsSelected, id: \.self) { ingredient in
                         IngredientSelected(icon: ingredient.icon, name: ingredient.name)
                             .listRowBackground(Color.background)
                             .swipeActions {
                                 Button(role: .destructive) {
-                                    deleteIngredient(ingredient)
+                                    viewModel.deleteIngredient(ingredient)
                                 } label: {
                                     Image(systemName: "cart.badge.minus")
                                 }
@@ -43,9 +39,9 @@ struct CartModalView: View {
                 .scrollContentBackground(.hidden)
                 .listStyle(.insetGrouped)
                 
-                
                 DeleteButton {
-                    ingredientSelected.removeAll()
+                    viewModel.ingredientsSelected.removeAll()
+                    presentationMode.wrappedValue.dismiss()
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -63,24 +59,19 @@ struct CartModalView: View {
                     .font(.defaultTitle2)
                     .foregroundColor(.primaryColor)
                 
-              
                 Spacer()
-                
-                    
-
                 
             }
             .frame(maxWidth: .infinity)
             .ignoresSafeArea()
             .background(Color.background)
-                
+            
         }
     }
 }
 
-
 struct CartModalView_Previews: PreviewProvider {
     static var previews: some View {
-        CartModalView(ingredientSelected: .constant([]))
+        CartModalView(viewModel: CartViewModel())
     }
 }
