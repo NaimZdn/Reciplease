@@ -16,6 +16,21 @@ struct CustomTextField: View {
     var size: CGFloat
     var charactersCounter: Bool
     
+    var counterColor: Color {
+        let number = charactersLimit / 5
+        let orangeInterval = charactersLimit - number
+        
+        if text.count >= orangeInterval && text.count != charactersLimit{
+            return .orange
+        } else if text.count <= orangeInterval && text.count != 0 && text.count != charactersLimit {
+            return.green
+        } else if text.count == charactersLimit{
+            return .red
+        } else {
+            return .primaryColor
+        }
+    }
+    
     var body: some View {
         
         VStack(alignment: .trailing, spacing: 15) {
@@ -51,7 +66,7 @@ struct CustomTextField: View {
             if charactersCounter {
                 Text("\(text.count)/\(charactersLimit)")
                     .font(.defaultLabelCaption)
-                    .foregroundColor(Color.primaryColor)
+                    .foregroundColor(counterColor)
                 
             }
         }
@@ -61,6 +76,6 @@ struct CustomTextField: View {
 
 struct CustomTextField_Previews: PreviewProvider {
     static var previews: some View {
-        CustomTextField(text: .constant(""), placeholder: "ID", charactersLimit: 1, size: 60, charactersCounter: true)
+        CustomTextField(text: .constant(""), placeholder: "ID", charactersLimit: 10, size: 90, charactersCounter: true)
     }
 }
