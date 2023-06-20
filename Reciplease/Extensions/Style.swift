@@ -30,6 +30,7 @@ extension Color {
     static let nutrimentFat = Color("nutrimentFat")
     static let nutrimentCarb = Color("nutrimentCarb")
     static let ingredientChecked = Color("ingredientChecked")
+    static let popUpError = Color("popUpError")
 }
 
 extension Font {
