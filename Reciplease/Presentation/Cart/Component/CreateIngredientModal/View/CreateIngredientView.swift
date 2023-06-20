@@ -15,6 +15,8 @@ struct CreateIngredientView: View {
     @State private var idCounter = 0
     @State private var nameCounter = 0
     
+    @State private var isDisabled = true
+    
     @ObservedObject var viewModel: CartViewModel
     
     var body: some View {
@@ -71,9 +73,36 @@ struct CreateIngredientView: View {
             Spacer()
             
             ValidateButton(buttonCaption: .constant("Add")) {
-                viewModel.addIngredient(name: name, icon: id, isSelected: false)
-                self.presentationMode.wrappedValue.dismiss()
+                if isDisabled == false {
+                   let containsCreatedIngredient = viewModel.ingredients.contains { ingredient in
+                        ingredient.name == name
+                    }
+                    
+                    if !containsCreatedIngredient  {
+                        viewModel.addIngredient(name: name, icon: id, isSelected: false)
+                        self.presentationMode.wrappedValue.dismiss()
+                    } else {
+                        print("Already exist")
+                    }
+                    
+                }
             }
+            .onChange(of: id, perform: { newValue in
+                if !newValue.isEmpty && !name.isEmpty {
+                    isDisabled = false
+                } else {
+                    isDisabled = true
+                }
+            })
+            .onChange(of: name, perform: { newValue in
+                if !newValue.isEmpty && !id.isEmpty {
+                    isDisabled = false
+                } else {
+                    isDisabled = true
+                }
+            })
+            
+            .disabled(isDisabled)
             .padding(.bottom, 20)
         }
         .background(Color.background)
