@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct CardOption: View {
-    @Binding var optionText : String
+    var optionText : String
     var optionIcon : String
     
     var body: some View {
         HStack(spacing: 5) {
             Image(optionIcon)
                 .resizable()
-                .frame(maxWidth: 15, maxHeight: 15)
+                .frame(width: 15, height: 15)
                 .foregroundColor(.cardTitleIcon)
             
             Text(optionText)
@@ -28,6 +28,6 @@ struct CardOption: View {
 
 struct CardOption_Previews: PreviewProvider {
     static var previews: some View {
-        CardOption(optionText: .constant("1 ppl"), optionIcon: "tablewar")
+        CardOption(optionText: "1 ppl", optionIcon: "tablewar")
     }
 }
