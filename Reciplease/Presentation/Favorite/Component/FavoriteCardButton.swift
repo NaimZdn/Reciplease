@@ -15,7 +15,6 @@ struct FavoriteCardButton: View {
     }
     
     var body: some View {
-        
         HStack {
             Button {
                 isFavorite.toggle()
