@@ -55,6 +55,7 @@ enum Title: String, Codable {
 struct RecipeClass: Codable {
     let label: String
     let image: String
+    let yield: Double
     let ingredients: [IngredientsResponse]
     let calories: Double
     let totalTime: Double
