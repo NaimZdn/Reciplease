@@ -8,21 +8,26 @@
 import SwiftUI
 
 struct IngredientList: View {
-    @Binding var ingredient: String
-    @Binding var quantity: String
+    var ingredient: String
+    var quantity: String
+    
     var body: some View {
+        
         HStack(spacing: 10) {
             IngredientListLabel(ingredient: ingredient)
             
             Text(quantity)
                 .font(.defaultBody)
                 .foregroundColor(.primaryColor)
+            
+            Spacer()
         }
+        //.frame(width: .infinity, alignment: .leading)
     }
 }
 
 struct IngredientList_Previews: PreviewProvider {
     static var previews: some View {
-        IngredientList(ingredient: .constant("🐓"), quantity: .constant("100g Chicken Escalope"))
+        IngredientList(ingredient: "🐓", quantity: "100g Chicken Escalope")
     }
 }
