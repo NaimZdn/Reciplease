@@ -55,6 +55,7 @@ enum Title: String, Codable {
 struct RecipeClass: Codable {
     let label: String
     let image: String
+    let url: String
     let yield: Double
     let ingredients: [IngredientsResponse]
     let calories: Double
@@ -99,7 +100,7 @@ struct IngredientsResponse: Codable {
     let food: String
     let weight: Double
     let foodCategory, foodID: String
-    let image: String
+    let image: String?
 
     enum CodingKeys: String, CodingKey {
         case text, quantity, measure, food, weight, foodCategory
@@ -110,5 +111,9 @@ struct IngredientsResponse: Codable {
 
 // MARK: - RecipeLinks
 struct RecipeLinks: Codable {
-    let next: Next
+    let next: Next?
+    
+    enum CodingKeys: String, CodingKey {
+        case next
+    }
 }
