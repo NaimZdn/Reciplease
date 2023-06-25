@@ -11,24 +11,91 @@ import WrappingHStack
 struct RecipeView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @State private var recipes = [1, 1, 1]
-
+    @StateObject private var recipeViewModel = RecipeViewModel()
+    
+    @State private var showDish = false
+    @State private var selectedHit: Hit? = nil
+    
+    var cartViewModel: CartViewModel
+    
     var body: some View {
         VStack {
             Rectangle()
                 .foregroundColor(Color.background)
                 .frame(maxWidth: .infinity, maxHeight: 5)
             
-            ScrollView {
-                VStack(spacing: 10) {
-                    
-                    ForEach(recipes, id: \.self) { _ in
-                        RecipeCard()
+            GeometryReader { geometry in
+                ScrollView {
+                    if recipeViewModel.isLoading {
+                        ProgressView()
+                            .frame(width: geometry.size.width)  
+                    } else {
+                        VStack(spacing: 10) {
+                            if recipeViewModel.recipes.isEmpty {
+                                VStack(spacing: 10) {
+                                    
+                                    Image(systemName: "book")
+                                        .font(.system(size: 70))
+                                        .foregroundColor(Color.primaryColor)
+                                    
+                                    Text("No recipe found with these ingredients")
+                                        .font(.defaultTitle2)
+                                        .foregroundColor(.primaryColor)
+                                        .multilineTextAlignment(.center)
+  
+                                }
+                                .frame(width: geometry.size.width)
+                                .frame(minHeight: geometry.size.height)
+                                .opacity(0.6)
+                                .ignoresSafeArea()
+                                
+                            } else {
+                                ForEach(recipeViewModel.recipes.indices, id: \.self) { index in
+                                    let hit = recipeViewModel.recipes[index]
+                                    let dishBinding = Binding(
+                                        get: { showDish },
+                                        set: { newValue in
+                                            if newValue {
+                                                selectedHit = hit
+                                            }
+                                            showDish = newValue
+                                        }
+                                    )
+                                    
+                                    RecipeCard(
+                                        title: hit.recipe.label,
+                                        kcalText: "\(String(format: "%0.f", hit.recipe.calories / hit.recipe.yield )) kcal",
+                                        tablewar: "\(String(format: "%0.f", hit.recipe.yield)) ppl",
+                                        timer: "\(String(format: "%0.f", hit.recipe.totalTime))",
+                                        image: URL(string: hit.recipe.image)!,
+                                        action: {
+                                            dishBinding.wrappedValue = true
+                                        }
+                                    )
+                                    .sheet(isPresented: dishBinding) {
+                                        DishView(
+                                            cartViewModel: cartViewModel,
+                                            recipeViewModel: recipeViewModel,
+                                            title: selectedHit!.recipe.label,
+                                            image: URL(string: selectedHit!.recipe.image)!,
+                                            stepsLink: selectedHit!.recipe.url,
+                                            timer: "\(String(format: "%0.f", selectedHit!.recipe.totalTime))",
+                                            tablewar: "\(String(format: "%0.f", selectedHit!.recipe.yield)) ppl",
+                                            kcalText: "\(String(format: "%0.f", selectedHit!.recipe.calories / selectedHit!.recipe.yield )) kcal",
+                                            protein: "\(String(format: "%0.f", selectedHit!.recipe.digest[2].total / selectedHit!.recipe.yield))",
+                                            fat: "\(String(format: "%0.f", selectedHit!.recipe.digest[0].total / selectedHit!.recipe.yield))",
+                                            carb: "\(String(format: "%0.f", selectedHit!.recipe.digest[1].total / selectedHit!.recipe.yield))",
+                                            ingredients: selectedHit!.recipe.ingredients
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                        .frame(width: geometry.size.width)
+                        .padding(.top, 15)
                     }
                 }
-                .padding(.top, 15)
             }
-            
             Spacer()
         }
         .navigationBarBackButtonHidden(true)
@@ -38,6 +105,7 @@ struct RecipeView: View {
                     Text("Recipe")
                         .font(.defaultTitle3)
                         .foregroundColor(Color.primaryColor)
+                        .multilineTextAlignment(.leading)
                 }
                 .padding(.top, 30)
                 
@@ -52,11 +120,19 @@ struct RecipeView: View {
         .padding(.top, 20)
         .padding(.horizontal, 20)
         .background(Color.background)
+        .onAppear {
+            recipeViewModel.fetchRecipe(viewModel: cartViewModel)
+        }
+        .onChange(of: recipeViewModel.isLoading) { isLoading in
+            
+        }
     }
 }
 
 struct RecipeView_Previews: PreviewProvider {
+    @EnvironmentObject private var recipeViewModel: RecipeViewModel
     static var previews: some View {
-        RecipeView()
+        RecipeView(cartViewModel: CartViewModel())
+ 
     }
 }
