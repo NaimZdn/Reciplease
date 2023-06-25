@@ -35,23 +35,27 @@ class APIRecipe: ObservableObject {
         return apiId
     }
     
-    func getAPI(apiEnvFilename: String = "Env", completion: @escaping (Result<Recipe, Errors>) -> Void) {
+    func getAPI(apiEnvFilename: String = "Env", viewModel: CartViewModel, completion: @escaping (Result<Recipe, Errors>) -> Void) {
         do {
             let apiKey = try getAPIKey(fromFileNamed: apiEnvFilename)
             let apiId = try getAPIId(fromFileNamed: apiEnvFilename)
+            
+            let ingredientNames = viewModel.ingredientsSelected.map { $0.name }.joined(separator: "+")
+            print(ingredientNames.lowercased())
             
             let parameters: Parameters = [
                 "app_key": apiKey,
                 "app_id": apiId,
                 "type": "public",
-                "q": "chicken+milk",
-                "field": ["label", "image", "ingredients", "calories", "totalTime", "digest", "yield"]
+                "random": true,
+                "q": ingredientNames.lowercased(),
+                "field": ["label", "image", "ingredients", "calories", "totalTime", "digest", "yield", "url"]
                 
             ]
             
             let encoding = URLEncoding(arrayEncoding: .noBrackets)
             
-            AF.request("https://api.edamam.com/api/recipes/v2",  parameters: parameters, encoding: encoding)
+            AF.request(baseUrl, parameters: parameters, encoding: encoding)
                 .validate()
                 .publishDecodable(type: Recipe.self)
                 .compactMap { $0.value }

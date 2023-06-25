@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Alamofire
+import SwiftUI
 
 class RecipeViewModel: ObservableObject {
     @Published var recipes: [Hit] = []
@@ -13,8 +15,9 @@ class RecipeViewModel: ObservableObject {
     
     private let apiRecipe = APIRecipe()
     
-    func fetchRecipe() {
-        apiRecipe.getAPI { result in
+    func fetchRecipe(viewModel: CartViewModel) {
+        self.recipes = []
+        apiRecipe.getAPI(viewModel: viewModel ) { result in
             switch result {
             case .success(let recipe):
                 self.recipes = recipe.hits
@@ -50,6 +53,4 @@ class RecipeViewModel: ObservableObject {
             return "🥣"
         }
     }
-
-
 }
