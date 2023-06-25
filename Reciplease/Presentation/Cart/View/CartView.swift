@@ -111,7 +111,7 @@ struct CartView: View {
             }
             .safeAreaInset(edge: .bottom, content: {
                 if !$viewModel.ingredientsSelected.isEmpty {
-                    NavigationLink(destination: RecipeView()) {
+                    NavigationLink(destination: RecipeView(cartViewModel: viewModel)) {
                         Text("Find recipe")
                             .font(.defaultButtonCaption)
                             .foregroundColor(Color.background)

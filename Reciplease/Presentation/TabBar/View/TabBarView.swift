@@ -14,10 +14,10 @@ struct TabBarView: View {
     @State private var isTermsOfServiceActive = false
     @State private var tabBarOpacity: Double = 1
     
-    @StateObject var cartViewModel = CartViewModel()
+    @ObservedObject private var cartViewModel = CartViewModel()
     
     @EnvironmentObject private var appSettings: AppSettings
-    
+
     init() {
         UITabBar.appearance().isHidden = true
     }
