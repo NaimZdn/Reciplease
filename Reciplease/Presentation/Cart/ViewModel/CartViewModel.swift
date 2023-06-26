@@ -132,6 +132,12 @@ class CartViewModel: ObservableObject {
         let emojiRange = string.range(of: "\\p{Emoji}", options: .regularExpression)
         return emojiRange == nil && !string.isEmpty
     }
+    
+    func deleteIngredientInApp(_ ingredient: Ingredient) {
+        if let index = ingredients.firstIndex(of: ingredient) {
+            ingredients.remove(at: index)
+        }
+    }
 }
 
 

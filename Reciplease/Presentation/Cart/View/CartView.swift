@@ -89,7 +89,7 @@ struct CartView: View {
                             let ingredient = viewModel.ingredients[index]
                             let isVisible = visibleIndices.contains(index)
                             
-                            IngredientLabel(viewModel: viewModel, ingredientsSelected: $viewModel.ingredientsSelected, isSelected: viewModel.bindingForIngredient(ingredient), ingredientIcon: ingredient.icon, ingredientName: ingredient.name)
+                            IngredientLabel(viewModel: viewModel, ingredientsSelected: $viewModel.ingredientsSelected, isSelected: viewModel.bindingForIngredient(ingredient), ingredientIcon: ingredient.icon, ingredientName: ingredient.name, ingredient: ingredient)
                                 .opacity(isVisible ? 1 : 0)
                                 .padding(.top, isVisible ? 0 : 20)
                                 .onAppear {
@@ -143,3 +143,4 @@ struct CartView_Previews: PreviewProvider {
         CartView(viewModel: CartViewModel())
     }
 }
+
