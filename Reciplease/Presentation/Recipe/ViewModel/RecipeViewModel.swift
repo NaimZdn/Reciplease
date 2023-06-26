@@ -40,8 +40,6 @@ class RecipeViewModel: ObservableObject {
                 }
             }
         }
-        print(ingredientIcons)
-        
         return ingredientIcons
     }
 

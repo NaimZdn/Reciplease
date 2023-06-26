@@ -38,7 +38,7 @@ struct DishView: View {
                                 Text("Follow the steps")
                                     .font(.defaultBody)
                                     .foregroundColor(.white)
-                                //.frame(width: .infinity, height: 40)
+                                    .frame(maxWidth: 170, maxHeight: 40)
                                     .padding(.horizontal, 20)
                                     .background(Color.cardFavoriteLabel, in: RoundedRectangle(cornerRadius: 7))
                             }

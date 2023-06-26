@@ -65,7 +65,7 @@ struct RecipeView: View {
                                     RecipeCard(
                                         title: hit.recipe.label,
                                         kcalText: "\(String(format: "%0.f", hit.recipe.calories / hit.recipe.yield )) kcal",
-                                        tablewar: "\(String(format: "%0.f", hit.recipe.yield)) ppl",
+                                        tablewar: "\(String(format: "%0.f", hit.recipe.yield)) \(hit.recipe.yield != 1 ? "ppl" : "prs")",
                                         timer: "\(String(format: "%0.f", hit.recipe.totalTime))",
                                         image: URL(string: hit.recipe.image)!,
                                         action: {
@@ -80,7 +80,7 @@ struct RecipeView: View {
                                             image: URL(string: selectedHit!.recipe.image)!,
                                             stepsLink: selectedHit!.recipe.url,
                                             timer: "\(String(format: "%0.f", selectedHit!.recipe.totalTime))",
-                                            tablewar: "\(String(format: "%0.f", selectedHit!.recipe.yield)) ppl",
+                                            tablewar: "\(String(format: "%0.f", selectedHit!.recipe.yield)) \(selectedHit!.recipe.yield != 1 ? "ppl" : "prs")",
                                             kcalText: "\(String(format: "%0.f", selectedHit!.recipe.calories / selectedHit!.recipe.yield )) kcal",
                                             protein: "\(String(format: "%0.f", selectedHit!.recipe.digest[2].total / selectedHit!.recipe.yield))",
                                             fat: "\(String(format: "%0.f", selectedHit!.recipe.digest[0].total / selectedHit!.recipe.yield))",
@@ -102,7 +102,7 @@ struct RecipeView: View {
         .toolbar {
             ToolbarItem(placement: .principal ) {
                 HStack(alignment: .center) {
-                    Text("Recipe")
+                    Text(recipeViewModel.recipes.count > 1 ? "Recipes" : "Recipe")
                         .font(.defaultTitle3)
                         .foregroundColor(Color.primaryColor)
                         .multilineTextAlignment(.leading)
