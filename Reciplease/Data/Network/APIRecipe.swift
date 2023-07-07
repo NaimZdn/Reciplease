@@ -35,13 +35,12 @@ class APIRecipe: ObservableObject {
         return apiId
     }
     
-    func getAPI(apiEnvFilename: String = "Env", viewModel: CartViewModel, completion: @escaping (Result<Recipe, Errors>) -> Void) {
+    func getAPI(apiEnvFilename: String = "Env", viewModel: CartViewModel, completion: @escaping (Result<RecipeData, Errors>) -> Void) {
         do {
             let apiKey = try getAPIKey(fromFileNamed: apiEnvFilename)
             let apiId = try getAPIId(fromFileNamed: apiEnvFilename)
             
             let ingredientNames = viewModel.ingredientsSelected.map { $0.name }.joined(separator: "+")
-            print(ingredientNames.lowercased())
             
             let parameters: Parameters = [
                 "app_key": apiKey,
@@ -57,7 +56,7 @@ class APIRecipe: ObservableObject {
             
             AF.request(baseUrl, parameters: parameters, encoding: encoding)
                 .validate()
-                .publishDecodable(type: Recipe.self)
+                .publishDecodable(type: RecipeData.self)
                 .compactMap { $0.value }
                 .sink(receiveCompletion: { completion in
                     switch completion {
@@ -67,7 +66,6 @@ class APIRecipe: ObservableObject {
                         print("Error: \(error)")
                     }
                 }, receiveValue: { response in
-                    print("dans la requete de base", response)
                     completion(.success(response))
                 })
                 .store(in: &cancellables)

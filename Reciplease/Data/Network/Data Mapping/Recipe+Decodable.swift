@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Recipe
-struct Recipe: Codable {
+struct RecipeData: Codable {
     let from, to, count: Int
     let links: RecipeLinks
     let hits: [Hit]

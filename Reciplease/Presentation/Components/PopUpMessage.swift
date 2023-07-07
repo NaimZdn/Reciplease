@@ -15,19 +15,17 @@ struct PopUpMessage: View {
         
         HStack(spacing: 20) {
             Image(systemName: isSuccess ? "checkmark.circle": "xmark.circle")
-                .foregroundColor(.white)
+                .foregroundColor(isSuccess ? .secondaryColor : .popUpError)
                 .font(.defaultTitle3)
             
             Text(message)
-                .font(.defaultBody)
-                .foregroundColor(.white)
-            
-            
-            
+                .font(.defaultLabelCaption)
+                .foregroundColor(.primaryColor)
+
         }
         .padding(20)
         .frame(maxWidth: .infinity, maxHeight: 70, alignment: .leading)
-        .background(isSuccess ? Color.green : Color.popUpError, in: RoundedRectangle(cornerRadius: 15, style: .continuous))
+        .background(Color.background)
     }
 }
 
