@@ -11,12 +11,13 @@ import SwiftUI
 struct RecipleaseApp: App {
     @StateObject private var appSettings = AppSettings()
     
-    let persistenceController = PersistenceController.shared
+    let dataController = DataController.shared
+
 
     var body: some Scene {
         WindowGroup {
            LaunchScreenView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environmentObject(appSettings)
         }
     }
