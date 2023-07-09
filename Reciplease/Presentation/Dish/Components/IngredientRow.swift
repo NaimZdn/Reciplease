@@ -22,7 +22,6 @@ struct IngredientList: View {
             
             Spacer()
         }
-        //.frame(width: .infinity, alignment: .leading)
     }
 }
 

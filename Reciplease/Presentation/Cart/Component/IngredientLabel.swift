@@ -30,7 +30,7 @@ struct IngredientLabel: View {
                     if !isSelected {
                         Menu {
                             Button(role: .destructive) {
-                                viewModel.deleteIngredientInApp(ingredient)
+                               viewModel.deleteIngredientInApp(ingredient)
                             } label: {
                                 HStack {
                                     Text("Delete")
@@ -88,6 +88,7 @@ struct IngredientLabel: View {
 struct IngredientLabel_Previews: PreviewProvider {
     
     @ObservedObject static private var viewModel = CartViewModel()
+    @ObservedObject static private var dataController = DataController.shared
     
     static var previews: some View {
         IngredientLabel(viewModel: CartViewModel(), ingredientsSelected: .constant([]), isSelected: .constant(false), ingredientIcon: viewModel.ingredients[1].icon, ingredientName: viewModel.ingredients[1].name, ingredient: viewModel.ingredients[1])

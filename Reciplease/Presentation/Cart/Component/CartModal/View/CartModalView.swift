@@ -35,6 +35,7 @@ struct CartModalView: View {
                             }
                     }
                 }
+                
                 .cornerRadius(15)
                 .scrollContentBackground(.hidden)
                 .listStyle(.insetGrouped)
