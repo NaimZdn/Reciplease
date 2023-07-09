@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct FavoriteCardButton: View {
-    @State private var isFavorite = false
+    var isFavorite: Bool
+    var togglefavorite: () -> Void
     
     private var favoriteIcon: String {
         isFavorite ? "favorite" : "favorite-outline"
@@ -17,7 +18,7 @@ struct FavoriteCardButton: View {
     var body: some View {
         HStack {
             Button {
-                isFavorite.toggle()
+                togglefavorite()
             } label: {
                 Image(favoriteIcon)
                     .resizable()
@@ -35,6 +36,6 @@ struct FavoriteCardButton: View {
 
 struct FavoriteCardButton_Previews: PreviewProvider {
     static var previews: some View {
-        FavoriteCardButton()
+        FavoriteCardButton(isFavorite: true, togglefavorite: {})
     }
 }
