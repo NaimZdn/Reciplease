@@ -16,6 +16,7 @@ struct CreateIngredientView: View {
     @State private var nameCounter = 0
     
     @State private var isDisabled = true
+    @State private var ingredientAlreadyExist = false
     
     @ObservedObject var viewModel: CartViewModel
     
@@ -70,6 +71,29 @@ struct CreateIngredientView: View {
             }
             .padding(.horizontal, 20)
             
+            if ingredientAlreadyExist {
+                HStack(spacing: 20) {
+                    Image(systemName:"xmark.circle")
+                        .foregroundColor(.popUpError)
+                        .font(.defaultTitle3)
+                    
+                    Text("This ingredient already exist !")
+                        .font(.defaultLabelCaption)
+                        .foregroundColor(.primaryColor)
+                    
+                }
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        withAnimation(.easeInOut(duration: 0.2)) {
+                            self.ingredientAlreadyExist = false
+                        }
+                    }
+                }
+                .frame(maxWidth: .infinity, maxHeight: 70, alignment: .leading)
+                .padding(20)
+                
+            }
+            
             Spacer()
             
             ValidateButton(buttonCaption: .constant("Add")) {
@@ -77,12 +101,14 @@ struct CreateIngredientView: View {
                    let containsCreatedIngredient = viewModel.ingredients.contains { ingredient in
                         ingredient.name == name
                     }
-                    
+
                     if !containsCreatedIngredient  {
                         viewModel.addIngredient(name: name, icon: id, isSelected: false)
                         self.presentationMode.wrappedValue.dismiss()
                     } else {
-                        print("Already exist")
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            ingredientAlreadyExist = true
+                        }
                     }
                     
                 }
