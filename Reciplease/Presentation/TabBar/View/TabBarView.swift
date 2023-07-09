@@ -9,12 +9,14 @@ import SwiftUI
 
 struct TabBarView: View {
     @State private var selectedTab: TabBar = .cart
+    @State private var isRecipeViewActive = false
     @State private var isAboutUsActive = false
     @State private var isPrivacyPolicyActive = false
     @State private var isTermsOfServiceActive = false
     @State private var tabBarOpacity: Double = 1
     
     @ObservedObject private var cartViewModel = CartViewModel()
+    @ObservedObject private var favoriteViewModel = FavoriteViewModel()
     
     @EnvironmentObject private var appSettings: AppSettings
 
@@ -26,21 +28,50 @@ struct TabBarView: View {
         ZStack {
             VStack {
                 TabView(selection: $selectedTab) {
-                    CartView(viewModel: cartViewModel)
+                    
+                    CartView(viewModel: cartViewModel, favoriteViewModel: favoriteViewModel, isRecipeViewActive: $isRecipeViewActive)
                         .tag(TabBar.cart)
-                    FavoriteView()
+                    FavoriteView(viewModel: favoriteViewModel)
                         .tag(TabBar.favorite)
                     SettingsView(isAboutUsActive: $isAboutUsActive, isPrivacyPolicyActive: $isPrivacyPolicyActive, isTermsOfServiceActive: $isTermsOfServiceActive)
                         .tag(TabBar.seetings)
                     
+                } .overlay {
+                    VStack {
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            PopUpMessage(message: favoriteViewModel.popUpMessage, isSuccess: favoriteViewModel.popUpStatus)
+                                .opacity(favoriteViewModel.showPopUp ? 1 : 0 )
+                                .padding(.top, favoriteViewModel.showPopUp ? 0 : -150)
+                                .onTapGesture {
+                                    withAnimation(.easeInOut(duration: 0.2)) {
+                                        favoriteViewModel.showPopUp = false
+                                    }
+                                }
+                        }
+                        
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            PopUpMessage(message: cartViewModel.popUpMessage, isSuccess: cartViewModel.popUpStatus)
+                                .opacity(cartViewModel.showPopUp ? 1 : 0 )
+                                .padding(.top, cartViewModel.showPopUp ? 0 : -150)
+                                .onTapGesture {
+                                    withAnimation(.easeInOut(duration: 0.2)) {
+                                        cartViewModel.showPopUp = false
+                                    }
+                                }
+                        }
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 }
                 
-                if !isAboutUsActive && !isPrivacyPolicyActive && !isTermsOfServiceActive {
+                
+            
+                if !isAboutUsActive && !isPrivacyPolicyActive && !isTermsOfServiceActive && !isRecipeViewActive{
                     CustomTabBar(selectedTab: $selectedTab)
                         .padding(.bottom, 25)
                         .opacity(tabBarOpacity)
-
+                    
                 }
+                
             }
         }
         .onChange(of: isAboutUsActive, perform: { newValue in
@@ -62,6 +93,15 @@ struct TabBarView: View {
             }
         })
         .onChange(of: isTermsOfServiceActive, perform: { newValue in
+            withAnimation(.easeInOut(duration: 0.1)) {
+                if newValue {
+                    tabBarOpacity = 0
+                } else {
+                    tabBarOpacity = 1
+                }
+            }
+        })
+        .onChange(of: isRecipeViewActive, perform: { newValue in
             withAnimation(.easeInOut(duration: 0.1)) {
                 if newValue {
                     tabBarOpacity = 0
