@@ -9,6 +9,9 @@ import SwiftUI
 
 struct CartView: View {
     @ObservedObject var viewModel: CartViewModel
+    @ObservedObject var favoriteViewModel: FavoriteViewModel
+    @ObservedObject var dataController =  DataController.shared
+    @Binding var isRecipeViewActive: Bool
     
     @State private var searchText = ""
     @State private var showCart = false
@@ -54,8 +57,6 @@ struct CartView: View {
                             Text("\($viewModel.ingredientsSelected.count)")
                                 .font(.defaultCartLabel)
                                 .foregroundColor(Color.white)
-                            
-                            
                                 .background(Color.secondaryColor
                                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                                     .mask(
@@ -111,7 +112,7 @@ struct CartView: View {
             }
             .safeAreaInset(edge: .bottom, content: {
                 if !$viewModel.ingredientsSelected.isEmpty {
-                    NavigationLink(destination: RecipeView(cartViewModel: viewModel)) {
+                    NavigationLink(destination: RecipeView(cartViewModel: viewModel, favoriteViewModel: favoriteViewModel).onAppear {isRecipeViewActive = true}.onDisappear { isRecipeViewActive = false }) {
                         Text("Find recipe")
                             .font(.defaultButtonCaption)
                             .foregroundColor(Color.background)
@@ -140,7 +141,7 @@ struct CartView: View {
 
 struct CartView_Previews: PreviewProvider {
     static var previews: some View {
-        CartView(viewModel: CartViewModel())
+        CartView(viewModel: CartViewModel(), favoriteViewModel: FavoriteViewModel(), isRecipeViewActive: .constant(true))
     }
 }
 

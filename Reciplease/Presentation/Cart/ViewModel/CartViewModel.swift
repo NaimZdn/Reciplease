@@ -7,86 +7,57 @@
 
 import Foundation
 import SwiftUI
+import CoreData
 
 class CartViewModel: ObservableObject {
-    @Published var ingredients: [Ingredient] = [
-        Ingredient(name: "Apple", icon: "🍏", isSelected: false),
-        Ingredient(name: "Banana", icon: "🍌", isSelected: false),
-        Ingredient(name: "Pear", icon: "🍐", isSelected: false),
-        Ingredient(name: "Orange", icon: "🍊", isSelected: false),
-        Ingredient(name: "Lemon", icon: "🍋", isSelected: false),
-        Ingredient(name: "Watermelon", icon: "🍉", isSelected: false),
-        Ingredient(name: "Grape", icon: "🍇", isSelected: false),
-        Ingredient(name: "Strawberry", icon: "🍓", isSelected: false),
-        Ingredient(name: "Blueberry", icon: "🫐", isSelected: false),
-        Ingredient(name: "Melon", icon: "🍈", isSelected: false),
-        Ingredient(name: "Cherry", icon: "🍒", isSelected: false),
-        Ingredient(name: "Peach", icon: "🍑", isSelected: false),
-        Ingredient(name: "Mango", icon: "🥭", isSelected: false),
-        Ingredient(name: "Pineapple", icon: "🍍", isSelected: false),
-        Ingredient(name: "Coconut", icon: "🥥", isSelected: false),
-        Ingredient(name: "Kiwi", icon: "🥝", isSelected: false),
-        Ingredient(name: "Tomato", icon: "🍅", isSelected: false),
-        Ingredient(name: "Eggplant", icon: "🍆", isSelected: false),
-        Ingredient(name: "Mushroom", icon: "🍄", isSelected: false),
-        Ingredient(name: "Avocado", icon: "🥑", isSelected: false),
-        Ingredient(name: "Broccoli", icon: "🥦", isSelected: false),
-        Ingredient(name: "Lettuce", icon: "🥬", isSelected: false),
-        Ingredient(name: "Cucumber", icon: "🥒", isSelected: false),
-        Ingredient(name: "Hot pepper", icon: "🌶", isSelected: false),
-        Ingredient(name: "Bell pepper", icon: "🫑", isSelected: false),
-        Ingredient(name: "Corn", icon: "🌽", isSelected: false),
-        Ingredient(name: "Carrot", icon: "🥕", isSelected: false),
-        Ingredient(name: "Olive", icon: "🫒", isSelected: false),
-        Ingredient(name: "Garlic", icon: "🧄", isSelected: false),
-        Ingredient(name: "Onion", icon: "🧅", isSelected: false),
-        Ingredient(name: "Potato", icon: "🥔", isSelected: false),
-        Ingredient(name: "Sweet potato", icon: "🍠", isSelected: false),
-        Ingredient(name: "Croissanr", icon: "🥐", isSelected: false),
-        Ingredient(name: "Bagel", icon: "🥯", isSelected: false),
-        Ingredient(name: "Baguette", icon: "🥖", isSelected: false),
-        Ingredient(name: "Bread", icon: "🍞", isSelected: false),
-        Ingredient(name: "Cheese", icon: "🧀", isSelected: false),
-        Ingredient(name: "Egg", icon: "🥚", isSelected: false),
-        Ingredient(name: "Butter", icon: "🧈", isSelected: false),
-        Ingredient(name: "Waffel", icon: "🧇", isSelected: false),
-        Ingredient(name: "Beef", icon: "🥩", isSelected: false),
-        Ingredient(name: "Bacon", icon: "🥓", isSelected: false),
-        Ingredient(name: "Chicken leg", icon: "🍗", isSelected: false),
-        Ingredient(name: "Fries", icon: "🍟", isSelected: false),
-        Ingredient(name: "Pita", icon: "🫓", isSelected: false),
-        Ingredient(name: "Tomato sauce", icon: "🥫", isSelected: false),
-        Ingredient(name: "Naruto", icon: "🍥", isSelected: false),
-        Ingredient(name: "Oyster", icon: "🦪", isSelected: false),
-        Ingredient(name: "Chocolate", icon: "🍫", isSelected: false),
-        Ingredient(name: "Chestnut", icon: "🌰", isSelected: false),
-        Ingredient(name: "Peanut", icon: "🥜", isSelected: false),
-        Ingredient(name: "Bean", icon: "🫘", isSelected: false),
-        Ingredient(name: "Snail", icon: "🐌", isSelected: false),
-        Ingredient(name: "Octopus", icon: "🐙", isSelected: false),
-        Ingredient(name: "Squid", icon: "🦑", isSelected: false),
-        Ingredient(name: "Shrimp", icon: "🦐", isSelected: false),
-        Ingredient(name: "Lobster", icon: "🦞", isSelected: false),
-        Ingredient(name: "Crab", icon: "🦀", isSelected: false),
-        Ingredient(name: "Rabbit", icon: "🐇", isSelected: false),
-        Ingredient(name: "Duck", icon: "🦆", isSelected: false),
-        Ingredient(name: "Fish", icon: "🐟", isSelected: false),
-        Ingredient(name: "Chicken", icon: "🐓", isSelected: false),
-        Ingredient(name: "Pork", icon: "🐷", isSelected: false),
-        Ingredient(name: "Milk", icon: "🥛", isSelected: false),
-        Ingredient(name: "Honey", icon: "🍯", isSelected: false),
-        Ingredient(name: "Ice", icon: "🧊", isSelected: false),
-        Ingredient(name: "Salt", icon: "🧂", isSelected: false),
-    ]
-    
+    private var dataController: DataController
+
+    @Published var ingredients: [Ingredient] = []
     @Published var ingredientsSelected: [Ingredient] = []
+    @Published var showPopUp = false
+    @Published var popUpMessage = ""
+    @Published var popUpStatus = false
+
+    private var context: NSManagedObjectContext
+
+    init() {
+        dataController = DataController.shared
+        context = dataController.container.viewContext
+        transformData()
+    }
     
+    private func transformData() {
+        let sortedEntities = dataController.ingredientsData.sorted { $0.order < $1.order }
+        
+        for entity in sortedEntities {
+            if let name = entity.name, let icon = entity.icon {
+                let ingredient = Ingredient(name: name, icon: icon, isSelected: true)
+                ingredients.append(ingredient)
+            }
+        }
+    }
+
     func addIngredient(name: String, icon: String, isSelected: Bool) {
         let newIngredient = Ingredient(name: name, icon: icon, isSelected: isSelected)
         ingredients.append(newIngredient)
+        
+        popUpMessage = Message.addIngredient.rawValue
+        popUpStatus = Message.addIngredient.status
+        
+        withAnimation(.easeInOut(duration: 0.6)) {
+            self.showPopUp = true
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            withAnimation(.easeInOut(duration: 0.2)) {
+                self.showPopUp = false
+            }
+        }
+        
+        dataController.addIngredientToData(name: name, icon: icon)
     }
     
-    func deleteIngredient(_ ingredient: Ingredient) {
+   func deleteIngredient(_ ingredient: Ingredient) {
         if let index = ingredientsSelected.firstIndex(of: ingredient) {
             ingredientsSelected.remove(at: index)
         }
@@ -117,6 +88,13 @@ class CartViewModel: ObservableObject {
         )
     }
     
+    func addToSelectedIngredients(_ ingredient: IngredientEntity) {
+        if let name = ingredient.name, let icon = ingredient.icon {
+            let ingredientSelected = Ingredient(name: name, icon: icon, isSelected: true)
+            ingredientsSelected.append(ingredientSelected)
+        }
+    }
+    
     func containsOnlySpaces(_ input: String) -> Bool {
         let trimmedInput = input.trimmingCharacters(in: .whitespaces)
         return trimmedInput.isEmpty
@@ -135,9 +113,22 @@ class CartViewModel: ObservableObject {
     
     func deleteIngredientInApp(_ ingredient: Ingredient) {
         if let index = ingredients.firstIndex(of: ingredient) {
+            dataController.deleteIngredientData(name: ingredient.name)
+            
+            popUpMessage = Message.deleteIngredient.rawValue
+            popUpStatus = Message.deleteIngredient.status
+            
+            withAnimation(.easeInOut(duration: 0.6)) {
+                self.showPopUp = true
+            }
+            
             ingredients.remove(at: index)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                withAnimation(.easeInOut(duration: 0.2)) {
+                    self.showPopUp = false
+                }
+            }
         }
     }
 }
-
-
