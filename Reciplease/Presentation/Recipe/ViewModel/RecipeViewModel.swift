@@ -21,7 +21,6 @@ class RecipeViewModel: ObservableObject {
             switch result {
             case .success(let recipe):
                 self.recipes = recipe.hits
-                print("dans le viewModel", self.recipes)
                 self.isLoading = false
             case .failure(let error):
                 print(error)
@@ -29,12 +28,12 @@ class RecipeViewModel: ObservableObject {
         }
     }
     
-    func displayIngredientIcon(ingredientsApp: [Ingredient], ingredientsResponse: [IngredientsResponse]) -> [String: String] {
+    func displayIngredientIcon(ingredientsApp: [Ingredient], ingredientsResponse: [String]) -> [String: String] {
         var ingredientIcons: [String: String] = [:]
         
         for ingredientApp in ingredientsApp {
             for ingredientResponse in ingredientsResponse {
-                if ingredientResponse.text.lowercased().contains(ingredientApp.name.lowercased()) {
+                if ingredientResponse.lowercased().contains(ingredientApp.name.lowercased()) {
                     ingredientIcons[ingredientApp.name.lowercased()] = ingredientApp.icon
                     break
                 }
