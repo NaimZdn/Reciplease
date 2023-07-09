@@ -11,7 +11,6 @@
         <attribute name="fat" optional="YES" attributeType="String"/>
         <attribute name="image" optional="YES" attributeType="String"/>
         <attribute name="ingredients" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
-        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="kcalText" optional="YES" attributeType="String"/>
         <attribute name="protein" optional="YES" attributeType="String"/>
         <attribute name="stepsLink" optional="YES" attributeType="String"/>
