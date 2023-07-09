@@ -37,27 +37,30 @@ class CartViewModel: ObservableObject {
         }
     }
 
-    func addIngredient(name: String, icon: String, isSelected: Bool) {
+    func addIngredientInApp(name: String, icon: String, isSelected: Bool) {
         let newIngredient = Ingredient(name: name, icon: icon, isSelected: isSelected)
         ingredients.append(newIngredient)
-        
-        popUpMessage = Message.addIngredient.rawValue
-        popUpStatus = Message.addIngredient.status
-        
-        withAnimation(.easeInOut(duration: 0.6)) {
-            self.showPopUp = true
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            withAnimation(.easeInOut(duration: 0.2)) {
-                self.showPopUp = false
-            }
-        }
-        
+
         dataController.addIngredientToData(name: name, icon: icon)
+        
+        displayPopUp(message: Message.addIngredient.rawValue,
+                     status: Message.addIngredient.status
+        )
     }
     
-   func deleteIngredient(_ ingredient: Ingredient) {
+    func deleteIngredientInApp(_ ingredient: Ingredient) {
+        if let index = ingredients.firstIndex(of: ingredient) {
+            dataController.deleteIngredientData(name: ingredient.name)
+            ingredients.remove(at: index)
+    
+            displayPopUp(message: Message.deleteIngredient.rawValue,
+                         status: Message.deleteIngredient.status
+            )
+            
+        }
+    }
+    
+   func removeIngredientSelected(_ ingredient: Ingredient) {
         if let index = ingredientsSelected.firstIndex(of: ingredient) {
             ingredientsSelected.remove(at: index)
         }
@@ -110,24 +113,18 @@ class CartViewModel: ObservableObject {
         let emojiRange = string.range(of: "\\p{Emoji}", options: .regularExpression)
         return emojiRange == nil && !string.isEmpty
     }
-    
-    func deleteIngredientInApp(_ ingredient: Ingredient) {
-        if let index = ingredients.firstIndex(of: ingredient) {
-            dataController.deleteIngredientData(name: ingredient.name)
-            
-            popUpMessage = Message.deleteIngredient.rawValue
-            popUpStatus = Message.deleteIngredient.status
-            
-            withAnimation(.easeInOut(duration: 0.6)) {
-                self.showPopUp = true
-            }
-            
-            ingredients.remove(at: index)
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                withAnimation(.easeInOut(duration: 0.2)) {
-                    self.showPopUp = false
-                }
+        
+    func displayPopUp(message: String, status: Bool) {
+        popUpMessage = message
+        popUpStatus = status
+        
+        withAnimation(.easeInOut(duration: 0.6)) {
+            self.showPopUp = true
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            withAnimation(.easeInOut(duration: 0.2)) {
+                self.showPopUp = false
             }
         }
     }

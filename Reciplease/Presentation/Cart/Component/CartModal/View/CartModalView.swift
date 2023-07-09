@@ -27,7 +27,7 @@ struct CartModalView: View {
                             .listRowBackground(Color.background)
                             .swipeActions {
                                 Button(role: .destructive) {
-                                    viewModel.deleteIngredient(ingredient)
+                                    viewModel.removeIngredientSelected(ingredient)
                                 } label: {
                                     Image(systemName: "cart.badge.minus")
                                 }

@@ -103,7 +103,7 @@ struct CreateIngredientView: View {
                     }
 
                     if !containsCreatedIngredient  {
-                        viewModel.addIngredient(name: name, icon: id, isSelected: false)
+                        viewModel.addIngredientInApp(name: name, icon: id, isSelected: false)
                         self.presentationMode.wrappedValue.dismiss()
                     } else {
                         withAnimation(.easeInOut(duration: 0.3)) {
