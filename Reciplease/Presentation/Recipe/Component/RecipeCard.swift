@@ -8,20 +8,21 @@
 import SwiftUI
 
 struct RecipeCard: View {
-    var title: String
-    var kcalText: String
-    var tablewar: String
-    var timer: String
-    var image: URL
-    var action: () -> Void
+    @ObservedObject var favoriteViewModel: FavoriteViewModel
+    
+    var recipe: Recipe
+    var closeModal: () -> Void
+    var isFavorite: Bool {
+        favoriteViewModel.isRecipeFavorite(recipe: recipe)
+    }
     
     var body: some View {
         Button {
-            action()
+            closeModal()
         } label: {
             HStack{
                 HStack(alignment: .top) {
-                    ImageView(imageURL: image)
+                    ImageView(imageURL: URL(string: recipe.image)!)
                         .scaledToFill()
                         .frame(width: 94, height: 94)
                         .cornerRadius(5)
@@ -29,7 +30,7 @@ struct RecipeCard: View {
                     
                     VStack(alignment: .leading) {
                         HStack {
-                            Text(title)
+                            Text(recipe.title)
                                 .multilineTextAlignment(.leading)
                                 .font(.cardValue)
                                 .foregroundColor(.cardTitleIcon)
@@ -37,13 +38,15 @@ struct RecipeCard: View {
                             
                             Spacer()
                             
-                            FavoriteButton()
+                            FavoriteButton(isFavorite: isFavorite) {
+                                favoriteViewModel.toggleFavorite(recipe: recipe)
+                            }
                         }
                         .padding(.leading, 7)
                         
-                        if timer != "0" {
+                        if recipe.timer != "0" {
                             HStack {
-                                CardOption(optionText: "\(timer) min", optionIcon: "timer")
+                                CardOption(optionText: "\(recipe.timer) min", optionIcon: "timer")
                             }
                             .padding(.leading, 7)
                         }
@@ -51,8 +54,8 @@ struct RecipeCard: View {
                         
                         HStack {
                             Spacer()
-                            CardOption(optionText: tablewar, optionIcon: "tablewar")
-                            CardOption(optionText: kcalText, optionIcon: "kcal")
+                            CardOption(optionText: recipe.tablewar, optionIcon: "tablewar")
+                            CardOption(optionText: recipe.kcalText, optionIcon: "kcal")
                         }
                     }
                 }
@@ -61,6 +64,7 @@ struct RecipeCard: View {
             .padding(15)
             .frame(maxWidth: 340, maxHeight: 120)
             .background(Color.cardBackground, in: RoundedRectangle(cornerRadius: 10))
+            .buttonStyle(PlainButtonStyle())
             
         }
     }
@@ -72,7 +76,7 @@ struct RecipeCard_Previews: PreviewProvider {
     static var previews: some View {
         
         VStack {
-            RecipeCard(title: "Chicken ramen ramen ramen ramen", kcalText: "494 kcal", tablewar: "1 ppl", timer: "0", image: imageURL, action: {})
+            RecipeCard(favoriteViewModel: FavoriteViewModel(), recipe: Recipe(title: "Chicken ramen", stepsLink: "", image: "", kcalText: "450", tablewar: "3", timer: "30", protein: "4", fat: "45", carb: "23", ingredients: []), closeModal: {})
         }
         .padding(10)
         .background(Color.background)

@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct FavoriteButton: View {
-    @State private var isFavorite = false
-    
+    var isFavorite: Bool
+    var toggleFavorite: () -> Void
+
     private var icon: String {
         isFavorite ? "favorite" : "favorite-outline"
     }
@@ -17,7 +18,7 @@ struct FavoriteButton: View {
     var body: some View {
         Button {
             withAnimation(.easeInOut(duration: 0.1)) {
-                isFavorite.toggle()
+                toggleFavorite()
             }
         } label: {
             Image(icon)
@@ -33,6 +34,6 @@ struct FavoriteButton: View {
 
 struct FavoriteButton_Previews: PreviewProvider {
     static var previews: some View {
-        FavoriteButton()
+        FavoriteButton(isFavorite: true, toggleFavorite: {})
     }
 }
