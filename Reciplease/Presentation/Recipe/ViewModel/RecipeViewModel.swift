@@ -46,8 +46,7 @@ class RecipeViewModel: ObservableObject {
         if let matchingKey = input.keys.first(where: { ingredient.contains($0) }),
            let matchingValue = input[matchingKey] {
             return matchingValue
-        } else {
-            return "🥣"
-        }
+        } 
+        return "🥣"
     }
 }

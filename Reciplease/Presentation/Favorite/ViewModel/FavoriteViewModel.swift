@@ -49,44 +49,21 @@ class FavoriteViewModel: ObservableObject {
     }
     
     func addRecipeToFavorite(recipe: Recipe) {
-        guard !isRecipeFavorite(recipe: recipe) else {
-            return
-        }
         dataController.addRecipeToFavorite(recipe)
         recipes.append(recipe)
 
-        popUpMessage = Message.addRecipeToFavorite.rawValue
-        popUpStatus = Message.addRecipeToFavorite.status
-        
-        withAnimation(.easeInOut(duration: 0.6)) {
-            self.showPopUp = true
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            withAnimation(.easeInOut(duration: 0.2)) {
-                self.showPopUp = false
-            }
-        }
+        displayPopUp(message: Message.addRecipeToFavorite.rawValue,
+                     status: Message.addRecipeToFavorite.status
+        )
     }
     
     func deleteRecipeFromFavorite(recipe: Recipe) {
-        guard isRecipeFavorite(recipe: recipe) else {
-            return
-        }
         dataController.deleteRecipeFromFavorite(recipe.title)
         recipes.removeAll { $0.title == recipe.title }
-      
-        popUpMessage = Message.deleteRecipeFromFavorite.rawValue
-        popUpStatus = Message.deleteRecipeFromFavorite.status
         
-        withAnimation(.easeInOut(duration: 0.6)) {
-            self.showPopUp = true
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            withAnimation(.easeInOut(duration: 0.2)) {
-                self.showPopUp = false
-            }
-        }
+        displayPopUp(message: Message.deleteRecipeFromFavorite.rawValue,
+                     status: Message.deleteRecipeFromFavorite.status
+        )
     }
     
     func toggleFavorite(recipe: Recipe)  {
@@ -100,5 +77,20 @@ class FavoriteViewModel: ObservableObject {
     
     func isRecipeFavorite(recipe: Recipe) -> Bool {
         return recipes.contains { $0.title == recipe.title }
+    }
+    
+    func displayPopUp(message: String, status: Bool) {
+        popUpMessage = message
+        popUpStatus = status
+        
+        withAnimation(.easeInOut(duration: 0.6)) {
+            self.showPopUp = true
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            withAnimation(.easeInOut(duration: 0.2)) {
+                self.showPopUp = false
+            }
+        }
     }
 }
