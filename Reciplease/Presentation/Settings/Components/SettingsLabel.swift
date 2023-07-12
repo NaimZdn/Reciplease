@@ -53,6 +53,8 @@ struct SettingsLabel: View {
             if darkModeToggle {
                 Toggle(isOn: $appSettings.darkModeEnabled) {
                 }
+                .accessibilityAddTraits(.isSelected)
+                .accessibilityLabel("Enabled dark mode")
                 .onChange(of: appSettings.darkModeEnabled, perform: { _ in
                     ThemeManager.shared.handleTheme(darkMode: appSettings.darkModeEnabled)
                 })
@@ -63,6 +65,8 @@ struct SettingsLabel: View {
             if notificationToggle {
                 Toggle(isOn: $viewModel.isNotificationEnabled) {
                 }
+                .accessibilityAddTraits(.isSelected)
+                .accessibilityLabel("Enabled notification")
                 .onChange(of: viewModel.isNotificationEnabled) { enabled in
                     if enabled {
                         viewModel.openAppSettings()
@@ -74,6 +78,7 @@ struct SettingsLabel: View {
                 .frame(width: 57)
             }
         }
+        .accessibilityAddTraits(.isButton)
         .padding(.horizontal, 20)
         .frame(maxWidth: .infinity, minHeight: 70)
         .background(Color.cardBackground, in: RoundedRectangle(cornerRadius: 15, style: .continuous))
@@ -85,7 +90,7 @@ struct SettingsLabel_Previews: PreviewProvider {
     @StateObject private static var appSettings = AppSettings()
     
     static var previews: some View {
-        SettingsLabel(appSettings: appSettings, text: "Enable notifications", icon: "bell", isNavigation: true, darkModeToggle: false, notificationToggle: false)
+        SettingsLabel(appSettings: appSettings, text: "Enable notifications", icon: "sun", isNavigation: false, darkModeToggle: true, notificationToggle: false)
             .environmentObject(appSettings)
     }
 }

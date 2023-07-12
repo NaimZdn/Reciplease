@@ -18,6 +18,7 @@ struct PrivacyPolicyView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
                     SectionTitle(showBackground: $showBackground, title: "Privacy Policy", duration: 0.5)
+                        .accessibilityAddTraits(.isHeader)
                     
                     Text("We respect your privacy and are committed to protecting your personal information.\n\nThis Privacy Policy explains how we collect, use, and safeguard your data when you use our app.")
                         .font(.defaultBody)
@@ -34,6 +35,7 @@ struct PrivacyPolicyView: View {
                             Divider()
                         }
                     }
+                    .accessibilityAddTraits(.isSummaryElement)
                 }
             }
             .navigationBarBackButtonHidden(true)

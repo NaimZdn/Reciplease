@@ -22,6 +22,8 @@ struct LinkButton: View {
                 .foregroundColor(.primaryColor)
                 .frame(width: 30, height: 30)
         }
+        .accessibilityAddTraits(.isLink)
+        .accessibilityLabel("Link to \(icon)")
         .sheet(isPresented: $isPresented) {
             SafariRepresentable(url: link)
         }

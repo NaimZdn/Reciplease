@@ -31,6 +31,7 @@ struct DeleteButton: View {
                 .background(Color.secondaryColor, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                 
             }
+            .accessibilityLabel("Delete all ingredients in your cart")
             .buttonStyle(.plain)
             .padding(.horizontal, 20)
             

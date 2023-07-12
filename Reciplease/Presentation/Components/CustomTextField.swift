@@ -70,6 +70,7 @@ struct CustomTextField: View {
                 
             }
         }
+        .accessibilityAddTraits(.isSearchField)
         .frame(maxWidth: size)
     }
 }

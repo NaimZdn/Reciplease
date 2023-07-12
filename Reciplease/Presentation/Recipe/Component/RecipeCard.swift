@@ -61,6 +61,8 @@ struct RecipeCard: View {
                 }
                 .frame(maxWidth: 314, maxHeight: 94, alignment: .center)
             }
+            .accessibilityLabel("Recipe card")
+            .accessibilityHint("Click to open the recipe details in a modal view")
             .padding(15)
             .frame(maxWidth: 340, maxHeight: 120)
             .background(Color.cardBackground, in: RoundedRectangle(cornerRadius: 10))

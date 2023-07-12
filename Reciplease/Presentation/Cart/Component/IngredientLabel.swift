@@ -48,6 +48,7 @@ struct IngredientLabel: View {
                                 .opacity(0.6)
                             
                         }
+                        .accessibilityLabel("Delete the ingredient from the application")
                         .onTapGesture {
                             isSelected = false
                         }
@@ -79,6 +80,7 @@ struct IngredientLabel: View {
                         .stroke(Color.selectorStroke, lineWidth: isSelected ? 1 : 0)
                 )
             }
+            .accessibilityAddTraits(.isSelected)
             .disabled(ingredientsSelected.count >= 9 && !isSelected)
             .buttonStyle(PlainButtonStyle())
         }

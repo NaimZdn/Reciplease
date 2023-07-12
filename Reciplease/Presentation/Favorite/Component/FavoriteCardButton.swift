@@ -27,6 +27,9 @@ struct FavoriteCardButton: View {
             }
             .buttonStyle(.plain)
         }
+        .accessibilityAddTraits(.isSelected)
+        .accessibilityLabel("Favorite button")
+        .accessibilityHint("Click to add/delete the recipe to/from your favorite")
         .padding(.horizontal, 10)
         .padding(.vertical, 6)
         .background(Color.cardFavoriteLabel, in: RoundedRectangle(cornerRadius: 7))

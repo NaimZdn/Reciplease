@@ -29,6 +29,7 @@ struct SettingsView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.bottom, 5)
                 }
+                .accessibilityAddTraits(.isHeader)
                 .padding(.vertical, 10)
                     
                 ScrollView(showsIndicators: false) {
@@ -39,6 +40,7 @@ struct SettingsView: View {
                                 .padding(.bottom, 10)
                             
                             SettingsLabel(appSettings: appSettings, text: label[0].rawValue, icon: label[0].icon, isNavigation: false, darkModeToggle: false, notificationToggle: true)
+                                
                             
                             SettingsLabel(appSettings: appSettings, text: label[1].rawValue, icon: label[1].icon, isNavigation: false, darkModeToggle: true, notificationToggle: false)
                             
@@ -53,16 +55,19 @@ struct SettingsView: View {
                                 SettingsLabel(appSettings: appSettings, text: label[2].rawValue, icon: label[2].icon, isNavigation: true, darkModeToggle: false, notificationToggle: false)
                                 
                             }
+                            .accessibilityLabel("Navigation to About us section")
                             
                             NavigationLink(destination: PrivacyPolicyView().onAppear{ isPrivacyPolicyActive = true }.onDisappear { isPrivacyPolicyActive = false }) {
                                 SettingsLabel(appSettings: appSettings, text: label[3].rawValue, icon: label[3].icon, isNavigation: true, darkModeToggle: false, notificationToggle: false)
                                 
                             }
+                            .accessibilityLabel("Navigation to Privacy policy section")
                             
                             NavigationLink(destination: TermsOfServiceView().onAppear{ isTermsOfServiceActive = true }.onDisappear { isTermsOfServiceActive = false }) {
                                 SettingsLabel(appSettings: appSettings, text: label[4].rawValue, icon: label[4].icon, isNavigation: true, darkModeToggle: false, notificationToggle: false)
                                 
                             }
+                            .accessibilityLabel("Navigation to Terms of service section")
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                         

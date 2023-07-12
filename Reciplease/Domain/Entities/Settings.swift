@@ -20,7 +20,7 @@ enum Label: String, CaseIterable {
         case .notification:
             return "bell"
         case .colorMode:
-            return "sun"
+            return "moon"
         case .about:
             return "question"
         case .privacy:

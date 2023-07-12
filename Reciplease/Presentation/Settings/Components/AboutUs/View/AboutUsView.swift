@@ -25,6 +25,7 @@ struct AboutUsView: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 15) {
                         SectionTitle(showBackground: $showBackgroundHello, title: "Hello everyone !", duration: 0.5)
+                            .accessibilityAddTraits(.isHeader)
                         
                         Text("I'm Naïm a french iOS developper and designer.")
                             .font(.defaultBody)
@@ -68,6 +69,7 @@ struct AboutUsView: View {
                 HStack(alignment: .center, spacing: 50) {
                     
                     LinkButton(isPresented: $showLinkedin, icon: Link.linkedin.rawValue, link: Link.linkedin.link)
+                        
                     
                     LinkButton(isPresented: $showGithub, icon: Link.github.rawValue, link: Link.github.link)
                 }

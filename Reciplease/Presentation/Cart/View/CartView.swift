@@ -31,11 +31,14 @@ struct CartView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
                     HStack(spacing: 15) {
-                        CustomTextField(text: $searchText, placeholder: "Search a product", charactersLimit: 12, size: 240, charactersCounter: false)
+                        CustomTextField(text: $searchText, placeholder: "Find an ingredient", charactersLimit: 12, size: 240, charactersCounter: false)
+                            .accessibilityLabel("Find an ingredient")
+                        
                         
                         OptionButton(icon: "plus") {
                             showAddIngredient = true
                         }
+                        .accessibilityLabel("Create a new ingredient in a modal view")
                         .sheet(isPresented: $showAddIngredient) {
                             if #available(iOS 16.0, *) {
                                 CreateIngredientView(viewModel: viewModel)
@@ -50,6 +53,7 @@ struct CartView: View {
                             OptionButton(icon: "cart-outline") {
                                 showCart = true
                             }
+                            .accessibilityLabel("Display your cart with the selected ingredient in a modal view")
                             .padding(.trailing, 5)
                             .sheet(isPresented: $showCart) {
                                 if #available(iOS 16.0, *) {
@@ -79,6 +83,7 @@ struct CartView: View {
                         }   
                     }
                 }
+                .accessibilityAddTraits(.isHeader)
                 .padding(.horizontal, 20)
                 .padding(.top, isHeaderVisible ? 0 : 50 )
                 .opacity(isHeaderVisible ? 1 : 0)
@@ -98,6 +103,8 @@ struct CartView: View {
                             let isVisible = visibleIndices.contains(index)
                             
                             IngredientLabel(viewModel: viewModel, ingredientsSelected: $viewModel.ingredientsSelected, isSelected: viewModel.bindingForIngredient(ingredient), ingredientIcon: ingredient.icon, ingredientName: ingredient.name, ingredient: ingredient)
+                                .accessibilityLabel(ingredient.name)
+                                .accessibilityHint("If you click on this label you select the \(ingredient.name) ingredient")
                                 .opacity(isVisible ? 1 : 0)
                                 .padding(.top, isVisible ? 0 : 20)
                                 .onAppear {
@@ -126,6 +133,9 @@ struct CartView: View {
                             .frame(maxWidth: .infinity, minHeight: 55)
                             .background(Color.secondaryColor, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                     }
+                    .accessibilityAddTraits(.isButton)
+                    .accessibilityLabel("Find recipe")
+                    .accessibilityHint("Click for finding recipes based on the ingredients you have ingredients")
                     .padding(.horizontal, 20)
                     .onAppear {
                         withAnimation(.easeInOut(duration: 0.5)) {

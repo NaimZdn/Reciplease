@@ -25,6 +25,8 @@ struct CartModalView: View {
                     List {
                         ForEach(viewModel.ingredientsSelected, id: \.self) { ingredient in
                             IngredientSelected(icon: ingredient.icon, name: ingredient.name)
+                                .accessibilityLabel(ingredient.name)
+                                .accessibilityHint("Slide to your right to remove the ingredient from your cart")
                                 .listRowBackground(Color.background)
                                 .swipeActions {
                                     Button(role: .destructive) {
@@ -44,6 +46,8 @@ struct CartModalView: View {
                     List {
                         ForEach(viewModel.ingredientsSelected, id: \.self) { ingredient in
                             IngredientSelected(icon: ingredient.icon, name: ingredient.name)
+                                .accessibilityLabel(ingredient.name)
+                                .accessibilityHint("Slide to your right to remove the ingredient from your cart")
                                 .listRowBackground(Color.background)
                                 .swipeActions {
                                     Button(role: .destructive) {
@@ -84,6 +88,7 @@ struct CartModalView: View {
                 Spacer()
                 
             }
+            .accessibilityAddTraits(.isSummaryElement)
             .frame(maxWidth: .infinity)
             .ignoresSafeArea()
             .background(Color.background)

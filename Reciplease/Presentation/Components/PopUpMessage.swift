@@ -23,6 +23,8 @@ struct PopUpMessage: View {
                 .foregroundColor(.primaryColor)
 
         }
+        .accessibilityAddTraits(.isButton)
+        .accessibilityLabel("Pop up Message")
         .padding(20)
         .frame(maxWidth: .infinity, maxHeight: 70, alignment: .leading)
         .background(Color.background)

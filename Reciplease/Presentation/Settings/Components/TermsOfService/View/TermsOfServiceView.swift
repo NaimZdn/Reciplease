@@ -19,6 +19,7 @@ struct TermsOfServiceView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
                     SectionTitle(showBackground: $showBackground, title: "Terms of Service", duration: 0.5)
+                        .accessibilityAddTraits(.isHeader)
                     
                     Text("Last updated : \(lastUpdated)")
                         .font(.defaultLabelCaption)
@@ -87,6 +88,7 @@ By accessing or using the App, you agree to be bound by these Terms. If you disa
                             Divider()
                         }
                     }
+                    .accessibilityAddTraits(.isSummaryElement)
                 }
             }
             .navigationBarBackButtonHidden(true)

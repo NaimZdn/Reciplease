@@ -34,6 +34,9 @@ struct LaunchScreenView: View {
                             isLogoVisible = true
                         }
                     }
+                    .accessibilityLabel("Reciplease logo")
+                    .accessibilityAddTraits(.isHeader)
+                
             }
             
             Spacer()
@@ -44,6 +47,7 @@ struct LaunchScreenView: View {
                     .frame(maxWidth: 265, maxHeight: 265)
                     .cornerRadius(300)
                     .padding(.bottom, 30)
+                    .accessibilityLabel("A fridge illustration")
                 
                 Text("All recipes based\n on your ingredients")
                     .font(.defaultTitle)
@@ -55,6 +59,7 @@ struct LaunchScreenView: View {
                     .font(.defaultBody)
                     .foregroundColor(Color.primaryColor)
             }
+            .accessibilityAddTraits(.isSummaryElement)
             .opacity(isMainVisible ? 1 : 0)
             .padding(.bottom, isMainVisible ? 0 : -70)
             .onAppear {
@@ -78,6 +83,8 @@ struct LaunchScreenView: View {
                     showTabBarView = true
                 }
             })
+            .accessibilityAddTraits(.isButton)
+            .accessibilityLabel("Let's start button")
             .opacity(isButtonVisible ? 1 : 0)
             .padding(.bottom, isButtonVisible ? 20 : -70)
             .onAppear {

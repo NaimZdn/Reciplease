@@ -28,13 +28,20 @@ struct TabBarView: View {
         ZStack {
             VStack {
                 TabView(selection: $selectedTab) {
-                    
                     CartView(viewModel: cartViewModel, favoriteViewModel: favoriteViewModel, isRecipeViewActive: $isRecipeViewActive)
                         .tag(TabBar.cart)
+                        .accessibilityAddTraits(.isSelected)
+                        .accessibilityLabel("Cart tab bar button")
+                    
                     FavoriteView(viewModel: favoriteViewModel)
                         .tag(TabBar.favorite)
+                        .accessibilityAddTraits(.isSelected)
+                        .accessibilityLabel("Favorite tab bar button")
+                    
                     SettingsView(isAboutUsActive: $isAboutUsActive, isPrivacyPolicyActive: $isPrivacyPolicyActive, isTermsOfServiceActive: $isTermsOfServiceActive)
                         .tag(TabBar.seetings)
+                        .accessibilityAddTraits(.isSelected)
+                        .accessibilityLabel("Settings tab bar button")
                     
                 } .overlay {
                     VStack {
@@ -60,6 +67,7 @@ struct TabBarView: View {
                                 }
                         }
                     }
+                    .accessibilityLabel("The Tab Bar")
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 }
                 

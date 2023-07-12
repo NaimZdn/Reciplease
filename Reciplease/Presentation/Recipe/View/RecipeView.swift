@@ -45,6 +45,7 @@ struct RecipeView: View {
                                             .multilineTextAlignment(.center)
                                         
                                     }
+                                    .accessibilityAddTraits(.isSummaryElement)
                                     .frame(width: geometry.size.width)
                                     .frame(minHeight: geometry.size.height)
                                     .opacity(0.6)

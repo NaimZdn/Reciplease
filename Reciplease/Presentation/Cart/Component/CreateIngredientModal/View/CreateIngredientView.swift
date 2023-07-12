@@ -10,7 +10,7 @@ import SwiftUI
 struct CreateIngredientView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @State private var id = ""
+    @State private var icon = ""
     @State private var name = ""
     @State private var idCounter = 0
     @State private var nameCounter = 0
@@ -34,15 +34,16 @@ struct CreateIngredientView: View {
                     
                 }
             }
+            .accessibilityAddTraits(.isHeader)
             .padding(.top, 30)
             .padding(.horizontal, 20)
             .padding(.bottom, 30)
             
             VStack(spacing: 10) {
-                Text(id)
+                Text(icon)
                     .font(.defaultTitle2)
                     .background(
-                        viewModel.isNotEmoji(id) ? Color.addIngredientIcon
+                        viewModel.isNotEmoji(icon) ? Color.addIngredientIcon
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .mask(
                                 Capsule()
@@ -57,16 +58,22 @@ struct CreateIngredientView: View {
                 
                 
             }
+            .accessibilityAddTraits(.isImage)
+            .accessibilityLabel("Preview of your new ingredient")
             .frame(maxWidth: 170, minHeight: 105)
             .background(Color.labelBackground, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
             .padding(.bottom, 25)
             
             HStack(spacing: 10) {
-                CustomTextField(text: $id, placeholder: "ID", charactersLimit: 1, size: 80, charactersCounter: true)
+                CustomTextField(text: $icon, placeholder: "Icon", charactersLimit: 1, size: 80, charactersCounter: true)
+                    .accessibilityLabel("The ingredient icon")
+                    .accessibilityValue("\(icon.count) out of 1")
                 
                 Spacer()
                 
                 CustomTextField(text: $name, placeholder: "Name", charactersLimit: 12, size: .infinity, charactersCounter: true)
+                    .accessibilityLabel("The ingredient name")
+                    .accessibilityValue("\(name.count) out of 12")
                 
             }
             .padding(.horizontal, 20)
@@ -103,7 +110,7 @@ struct CreateIngredientView: View {
                     }
 
                     if !containsCreatedIngredient  {
-                        viewModel.addIngredientInApp(name: name, icon: id, isSelected: false)
+                        viewModel.addIngredientInApp(name: name, icon: icon, isSelected: false)
                         self.presentationMode.wrappedValue.dismiss()
                     } else {
                         withAnimation(.easeInOut(duration: 0.3)) {
@@ -113,7 +120,9 @@ struct CreateIngredientView: View {
                     
                 }
             }
-            .onChange(of: id, perform: { newValue in
+            .accessibilityLabel("Click to add a new ingredient")
+            .accessibilityHint("The icon and name field must not be empty")
+            .onChange(of: icon, perform: { newValue in
                 if !newValue.isEmpty && !name.isEmpty {
                     isDisabled = false
                 } else {
@@ -121,7 +130,7 @@ struct CreateIngredientView: View {
                 }
             })
             .onChange(of: name, perform: { newValue in
-                if !newValue.isEmpty && !id.isEmpty {
+                if !newValue.isEmpty && !icon.isEmpty {
                     isDisabled = false
                 } else {
                     isDisabled = true

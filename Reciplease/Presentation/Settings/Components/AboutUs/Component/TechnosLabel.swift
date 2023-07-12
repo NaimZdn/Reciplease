@@ -22,6 +22,8 @@ struct TechnosLabel: View {
                         .stroke(Color.primaryColor, lineWidth: 1)
                 }    
         }
+        .accessibilityAddTraits(.isImage)
+        .accessibilityLabel(techno)
     }
 }
 

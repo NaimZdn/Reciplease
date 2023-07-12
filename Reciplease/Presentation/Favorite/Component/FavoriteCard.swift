@@ -58,6 +58,8 @@ struct FavoriteCard: View {
                 
                 
             }
+            .accessibilityLabel("Favorite recipe card")
+            .accessibilityHint("Click to open the recipe details in a modal view")
             .padding(.horizontal, 10)
             .padding(.vertical, 15)
             .frame(maxWidth: 169, maxHeight: 230)

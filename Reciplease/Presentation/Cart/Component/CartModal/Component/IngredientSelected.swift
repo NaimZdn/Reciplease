@@ -23,6 +23,7 @@ struct IngredientSelected: View {
             
             Spacer()
         }
+        .accessibilityAddTraits(.isButton)
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
