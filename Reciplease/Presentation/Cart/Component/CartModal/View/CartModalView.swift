@@ -21,29 +21,50 @@ struct CartModalView: View {
                     .padding(.horizontal, 20)
                     .padding(.top, 20)
                 
-                List {
-                    ForEach(viewModel.ingredientsSelected, id: \.self) { ingredient in
-                        IngredientSelected(icon: ingredient.icon, name: ingredient.name)
-                            .listRowBackground(Color.background)
-                            .swipeActions {
-                                Button(role: .destructive) {
-                                    viewModel.removeIngredientSelected(ingredient)
-                                } label: {
-                                    Image(systemName: "cart.badge.minus")
+                if #available(iOS 16.0, *) {
+                    List {
+                        ForEach(viewModel.ingredientsSelected, id: \.self) { ingredient in
+                            IngredientSelected(icon: ingredient.icon, name: ingredient.name)
+                                .listRowBackground(Color.background)
+                                .swipeActions {
+                                    Button(role: .destructive) {
+                                        viewModel.removeIngredientSelected(ingredient)
+                                    } label: {
+                                        Image(systemName: "cart.badge.minus")
+                                    }
+                                    .tint(.secondaryColor)
                                 }
-                                .tint(.secondaryColor)
-                            }
+                        }
                     }
+                    .cornerRadius(15)
+                    .scrollContentBackground(.hidden)
+                    .listStyle(.insetGrouped)
+                    
+                } else {
+                    List {
+                        ForEach(viewModel.ingredientsSelected, id: \.self) { ingredient in
+                            IngredientSelected(icon: ingredient.icon, name: ingredient.name)
+                                .listRowBackground(Color.background)
+                                .swipeActions {
+                                    Button(role: .destructive) {
+                                        viewModel.removeIngredientSelected(ingredient)
+                                    } label: {
+                                        Image(systemName: "cart.badge.minus")
+                                    }
+                                    .tint(.secondaryColor)
+                                }
+                                }
+                    }
+                    .padding(.top, 20)
+                    .cornerRadius(15)
+                    .listStyle(.plain)
                 }
-                
-                .cornerRadius(15)
-                .scrollContentBackground(.hidden)
-                .listStyle(.insetGrouped)
                 
                 DeleteButton {
                     viewModel.ingredientsSelected.removeAll()
                     presentationMode.wrappedValue.dismiss()
                 }
+                .padding(.bottom, 20)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(Color.background)

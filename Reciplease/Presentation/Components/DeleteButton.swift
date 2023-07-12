@@ -18,7 +18,7 @@ struct DeleteButton: View {
                 HStack(spacing: 15) {
                     Image(systemName: "xmark")
                         .resizable()
-                        .foregroundColor(.white)
+                        .foregroundColor(.background)
                         .frame(width: 12, height: 12)
                         .padding(.bottom, -2)
                     
@@ -26,10 +26,9 @@ struct DeleteButton: View {
                         .font(.defaultLabelCaption)
                         .foregroundColor(Color.background)
                        
-            
                 }
                 .frame(maxWidth: .infinity, minHeight: 55)
-                .background(Color.primaryColor, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .background(Color.secondaryColor, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                 
             }
             .buttonStyle(.plain)

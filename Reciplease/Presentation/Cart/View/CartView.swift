@@ -37,9 +37,13 @@ struct CartView: View {
                             showAddIngredient = true
                         }
                         .sheet(isPresented: $showAddIngredient) {
-                            CreateIngredientView(viewModel: viewModel)
-                                .presentationDetents([.large, .fraction(0.7)])
-                                .presentationDragIndicator(.visible)
+                            if #available(iOS 16.0, *) {
+                                CreateIngredientView(viewModel: viewModel)
+                                    .presentationDetents([.large, .fraction(0.7)])
+                                    .presentationDragIndicator(.visible)
+                            } else {
+                                CreateIngredientView(viewModel: viewModel)
+                            }
                             
                         }
                         ZStack {
@@ -48,10 +52,13 @@ struct CartView: View {
                             }
                             .padding(.trailing, 5)
                             .sheet(isPresented: $showCart) {
-                                CartModalView(viewModel: viewModel)
-                                    .presentationDetents([.large, .fraction(0.85)])
-                                    .presentationDragIndicator(.visible)
-                                
+                                if #available(iOS 16.0, *) {
+                                    CartModalView(viewModel: viewModel)
+                                        .presentationDetents([.large, .fraction(0.85)])
+                                        .presentationDragIndicator(.visible)
+                                } else {
+                                    CartModalView(viewModel: viewModel)
+                                }
                             }
                             
                             Text("\($viewModel.ingredientsSelected.count)")
@@ -135,6 +142,7 @@ struct CartView: View {
                 }
             })
             .background(Color.background)
+            .navigationBarHidden(true)
         }
     }
 }
