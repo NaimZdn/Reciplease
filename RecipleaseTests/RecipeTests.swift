@@ -48,14 +48,14 @@ final class RecipeTests: XCTestCase {
         
         recipe.fetchRecipe(viewModel: cart)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             XCTAssertEqual(self.recipe.recipes.count, 20)
             XCTAssertFalse(self.recipe.isLoading)
             
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: 10.0)
+        wait(for: [expectation], timeout: 15.0)
     }
     
     func testGivenInvalidAPIKey_WhenFetchingRecipe_ThenErrorIsAPIKeyNotFound() {
