@@ -54,7 +54,11 @@ class APIRecipe: ObservableObject {
             
             let encoding = URLEncoding(arrayEncoding: .noBrackets)
             
-            AF.request(baseUrl, parameters: parameters, encoding: encoding)
+            let cachePolicy = URLRequest.CachePolicy.returnCacheDataElseLoad
+            var urlRequest = URLRequest(url: URL(string: baseUrl)!, cachePolicy: cachePolicy, timeoutInterval: 10.0)
+            urlRequest = try encoding.encode(urlRequest, with: parameters)
+            
+            AF.request(urlRequest)
                 .validate()
                 .publishDecodable(type: RecipeData.self)
                 .compactMap { $0.value }
