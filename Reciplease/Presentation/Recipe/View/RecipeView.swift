@@ -127,7 +127,7 @@ struct RecipeView: View {
                 .padding(.leading, 5))
             
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.top, 20)
+            .padding(.top, -10)
             .padding(.horizontal, 20)
             .background(Color.background)
             .onAppear {

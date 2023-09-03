@@ -12,6 +12,15 @@
   <img src="https://img.shields.io/badge/-Adobe%20Illustrator-FF9A00?style=flat&labelColor=FF9A00&logo=adobe%20illustrator&logoColor=white"/>
 </p>
 
+<h2> Before building </h2>
+
+Create a file named `Env.plist` with 2 Key : 
+- RECIPE_API_ID 
+- RECIPE_API_KEY
+
+You can find these Keys here : 
+- [Recipe API(https://www.edamam.com)
+
 <h2> App Design </h2>
 
 <img src="https://github.com/NaimZdn/Reciplease/blob/main/README%20Assets/presentation_reciplease.jpg"/>
