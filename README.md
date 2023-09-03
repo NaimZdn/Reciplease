@@ -14,7 +14,7 @@
 
 <h2> Before building </h2>
 
-Create a file named `Env.plist` with 2 Key : 
+Create a file named `Env.plist` with 2 Keys : 
 - RECIPE_API_ID 
 - RECIPE_API_KEY
 
